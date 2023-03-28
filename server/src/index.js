@@ -5,13 +5,17 @@ import session from "express-session";
 import mongoStore from 'connect-mongo';
 
 const app = express();
+
+// SETEO BASICO DE APLICACION-SERVIDOR
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true,
 }))
+//lectura de bd
+app.use(express.static(__dirname+"/public"));
+
 
 //CONEXIÓN A MONGO ATLAS
-
 app.use(
     session({
       store: new mongoStore({
@@ -24,10 +28,6 @@ app.use(
     })
     )
 
-
-
-//lectura de bd
-app.use(express.static(__dirname+"/public"));
 
 const port = process.env.PORT || 3000; //o escoge aleatoio o se va al 8080
 app.listen(port, () => console.log("puerto ok"));
