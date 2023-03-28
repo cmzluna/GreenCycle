@@ -4,6 +4,9 @@ import express from "express";
 import session from "express-session"; 
 import mongoStore from 'connect-mongo';
 
+import usersRouter from './routes/users.router.js'
+import recyclesRouter from './routes/recycles.router.js'
+
 const app = express();
 
 // SETEO BASICO DE APLICACION-SERVIDOR
@@ -27,6 +30,12 @@ app.use(
       cookie:{maxAge:60000}
     })
     )
+
+
+// ROUTES
+app.use('/GreenCycle/users', usersRouter)  
+app.use('/GreenCycle/recycles', recyclesRouter)  
+
 
 
 const port = process.env.PORT || 3000; //o escoge aleatoio o se va al 8080
