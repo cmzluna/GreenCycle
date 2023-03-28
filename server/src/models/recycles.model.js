@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const recyclesSchema = new mongoose.Schema({
+const recyclesSchema = new Schema({
     currentPoints: {
         type: Number,
         required: true,
@@ -18,7 +18,6 @@ const recyclesSchema = new mongoose.Schema({
         ref: 'Users',
         required: true
     }
-
 })
 
-export const recyclesModel = mongoose.model('Recycles', usersSchema)
+export const recyclesModel = model('Recycles', recyclesSchema)
