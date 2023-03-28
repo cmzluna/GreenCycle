@@ -3,11 +3,16 @@ import {__dirname} from "./utils.js" ;
 import express from "express";
 import session from "express-session"; 
 import mongoStore from 'connect-mongo';
+import './dbConfig.js';
+import usersRouter from './routes/users.router.js';
+import recyclesRouter from './routes/recycles.router.js';
 
-import usersRouter from './routes/users.router.js'
-import recyclesRouter from './routes/recycles.router.js'
+import { PORT } from './config.js';
 
 const app = express();
+
+//seteo el PORT
+app.set('port', PORT)
 
 // SETEO BASICO DE APLICACION-SERVIDOR
 app.use(express.json());
@@ -38,6 +43,5 @@ app.use('/GreenCycle/recycles', recyclesRouter)
 
 
 
-const port = process.env.PORT || 3000; //o escoge aleatoio o se va al 8080
-app.listen(port, () => console.log("puerto ok"));
+app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')}`));
 
