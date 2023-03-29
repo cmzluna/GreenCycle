@@ -3,7 +3,8 @@ import express from "express";
 import session from "express-session"; 
 import mongoStore from 'connect-mongo';
 import handlebars from 'express-handlebars';
-
+import morgan from 'morgan';
+import cors from 'cors';
 // CUSTOM IMPORTS
 import {__dirname} from "./utils.js" ;
 import './dbConfig.js';
@@ -11,7 +12,7 @@ import usersRouter from './routes/users.router.js';
 import recyclesRouter from './routes/recycles.router.js';
 import viewsRouter from './routes/views.router.js';
 
-import { PORT } from './config.js';
+import { PORT, URI_MONGO } from './config.js';
 
 const app = express();
 
@@ -20,9 +21,22 @@ app.set('port', PORT)
 
 // SETEO BASICO DE APLICACION-SERVIDOR
 app.use(express.json());
-app.use(express.urlencoded({extended: true,}))
+app.use(express.urlencoded({extended: true,}));
 app.use(express.static(__dirname+"/public"));
+app.use(morgan('dev'));
+app.use(cors());
+/*
+estoy nos servira para aceptar las llamadas del front, debemos esperar a que este lista la URL del front para hacerlo funcional
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', FRONT_DOMINIO); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+});
+
+*/
 // HANDLEBARS SET UP
 app.engine('handlebars', handlebars.engine())
 app.set('views', __dirname + '/views')
@@ -33,7 +47,7 @@ app.set('view engine', 'handlebars')
 app.use(
     session({
       store: new mongoStore({
-        mongoUrl:'mongodb+srv://nmayord:Nat1mayor23@cluster0.sy4jpe7.mongodb.net/GreenCycle?retryWrites=true&w=majority'
+        mongoUrl: URI_MONGO
       }),
       resave: false,
       saveUninitialized: false,
