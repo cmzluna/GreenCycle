@@ -11,7 +11,7 @@ import usersRouter from './routes/users.router.js';
 import recyclesRouter from './routes/recycles.router.js';
 import viewsRouter from './routes/views.router.js';
 
-import { PORT } from './config.js';
+import { PORT, URI_MONGO } from './config.js';
 
 const app = express();
 
@@ -33,7 +33,7 @@ app.set('view engine', 'handlebars')
 app.use(
     session({
       store: new mongoStore({
-        mongoUrl:'mongodb+srv://nmayord:Nat1mayor23@cluster0.sy4jpe7.mongodb.net/GreenCycle?retryWrites=true&w=majority'
+        mongoUrl: URI_MONGO
       }),
       resave: false,
       saveUninitialized: false,
