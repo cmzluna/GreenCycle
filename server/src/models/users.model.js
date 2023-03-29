@@ -21,9 +21,12 @@ const usersSchema = new Schema({
     image:{
         type: String,
     },
-    role:{
-        type: String,
-    }
+    role: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Role',
+        }
+    ]
 })
 
 export const usersModel = model('Users', usersSchema)

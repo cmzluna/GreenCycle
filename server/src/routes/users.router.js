@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { usersModel } from '../models/users.model.js'
+import { getAllUsers, updateUser, deleteUser } from '../controllers/users.controllers.js';
 
 const router = Router()
 
@@ -26,6 +27,12 @@ router.post('/login', (req, res) => {
 router.get('/profile', (req, res) => {
     res.json({ message: "This is user profile" })
 })
+
+router.get('/allUsers', getAllUsers);
+
+router.put('/updateUser', updateUser);
+
+router.delete('/deleteUser', deleteUser);
 
 export default router
 
