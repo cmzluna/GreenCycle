@@ -1,11 +1,15 @@
-import "./dbConfig.js";
-import {__dirname} from "./utils.js" ;
+// SYSTEM IMPORTS
 import express from "express";
 import session from "express-session"; 
 import mongoStore from 'connect-mongo';
+import handlebars from 'express-handlebars';
+
+// CUSTOM IMPORTS
+import {__dirname} from "./utils.js" ;
 import './dbConfig.js';
 import usersRouter from './routes/users.router.js';
 import recyclesRouter from './routes/recycles.router.js';
+import viewsRouter from './routes/views.router.js';
 
 import { PORT } from './config.js';
 
@@ -16,11 +20,13 @@ app.set('port', PORT)
 
 // SETEO BASICO DE APLICACION-SERVIDOR
 app.use(express.json());
-app.use(express.urlencoded({
-    extended: true,
-}))
-//lectura de bd
+app.use(express.urlencoded({extended: true,}))
 app.use(express.static(__dirname+"/public"));
+
+// HANDLEBARS SET UP
+app.engine('handlebars', handlebars.engine())
+app.set('views', __dirname + '/views')
+app.set('view engine', 'handlebars')
 
 
 //CONEXIÓN A MONGO ATLAS
@@ -38,8 +44,13 @@ app.use(
 
 
 // ROUTES
+app.use('/GreenCycle/views', viewsRouter)  
 app.use('/GreenCycle/users', usersRouter)  
-app.use('/GreenCycle/recycles', recyclesRouter)  
+app.use('/GreenCycle/recycles', recyclesRouter)
+
+app.get('/',(req,res)=>{
+  res.redirect('/views/login')
+})
 
 
 
