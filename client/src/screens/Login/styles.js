@@ -1,28 +1,41 @@
 import styled from 'styled-components/native';
 
-const View = styled.View`
+const Fields = styled.View`
   display: flex;
-  background-color: #dbe4c6;
+  flex: 1;
+  background-color: #fff;
   height: 100%;
+  padding: 20px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  border: 1px solid red;
 `;
 
-const Header = styled.View`
+const ActionsContainer = styled.View`
   display: flex;
-  padding: 10px;
+  margin: 8px;
+  flex-direction: row;
+  gap: 30px;
   justify-content: center;
-  align-items: flex-end;
-  height: 100px;
-  width: 80%;
-  background-color: #dbe4c6;
-  border: 1px solid #94af9f;
+  align-items: center;
+
+  width: 100%;
+  background-color: #fff;
 `;
 
 const Title = styled.Text`
   color: #000;
-  color: #94af9f;
-  font-size: 32px;
+  font-size: 20px;
+  font-weight: bold;
 `;
 
-export {View, Header, Title};
+const TextComp = styled.Text`
+  color: #000;
+  font-size: 14px;
+`;
+
+const Link = styled(TextComp)`
+  font-size: 20px;
+  font-weight: bold;
+`;
+export {Fields, ActionsContainer, Title, Link, TextComp};
