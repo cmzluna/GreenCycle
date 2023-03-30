@@ -5,13 +5,14 @@ import mongoStore from 'connect-mongo';
 import handlebars from 'express-handlebars';
 import morgan from 'morgan';
 import cors from 'cors';
+import passport from 'passport';
 // CUSTOM IMPORTS
 import {__dirname} from "./utils.js" ;
 import './dbConfig.js';
 import usersRouter from './routes/users.router.js';
 import recyclesRouter from './routes/recycles.router.js';
 import viewsRouter from './routes/views.router.js';
-
+import checkJwt from "./auth0/auth0.js";
 import { PORT, URI_MONGO } from './config.js';
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(express.urlencoded({extended: true,}));
 app.use(express.static(__dirname+"/public"));
 app.use(morgan('dev'));
 app.use(cors());
+app.use(checkJwt)
 /*
 estoy nos servira para aceptar las llamadas del front, debemos esperar a que este lista la URL del front para hacerlo funcional
 
@@ -56,6 +58,10 @@ app.use(
     })
     )
 
+// PASSPORT CONFIGURATION
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 // ROUTES
 app.use('/GreenCycle/views', viewsRouter)  
@@ -63,10 +69,11 @@ app.use('/GreenCycle/users', usersRouter)
 app.use('/GreenCycle/recycles', recyclesRouter)
 
 app.get('/',(req,res)=>{
-  res.redirect('/views/login')
+  res.redirect('/GreenCycle/views/login')
 })
 
 
 
-app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')}`));
+app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')} ---> http://localhost:3000`));
+
 
