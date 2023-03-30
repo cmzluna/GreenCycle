@@ -4,26 +4,26 @@ import Login from '../../screens/Login';
 import Welcome from '../../screens/Welcome';
 import Register from '../../screens/Register';
 
-const AuthStack = createNativeStackNavigator();
+const AuthStackNav = createNativeStackNavigator();
 
-const AuthStackScreen = () => (
-  <AuthStack.Navigator>
-    <AuthStack.Screen name="Welcome" component={Welcome} />
-    <AuthStack.Screen
+const AuthStack = () => (
+  <AuthStackNav.Navigator>
+    <AuthStackNav.Screen name="Welcome" component={Welcome} />
+    <AuthStackNav.Screen
       name="Login"
       component={Login}
       options={{
         headerShown: false,
       }}
     />
-    <AuthStack.Screen
+    <AuthStackNav.Screen
       name="Register"
       component={Register}
       options={{
         headerShown: false,
       }}
     />
-  </AuthStack.Navigator>
+  </AuthStackNav.Navigator>
 );
 
-export default AuthStackScreen;
+export default AuthStack;
