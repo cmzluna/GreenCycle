@@ -5,7 +5,7 @@ import MainStack from '../../stacks/MainStack';
 import AuthStack from '../../stacks/AuthStack';
 
 const Main = () => {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   return (
     <SafeAreaView style={{flex: 1}}>
