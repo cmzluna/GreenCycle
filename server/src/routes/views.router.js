@@ -14,5 +14,9 @@ router.get('/profile', (req, res) => {
     res.render('profile')
 })
 
+router.get('/pointsProfile', (req, res) => {
+    res.render('pointsProfile');
+})
+
 export default router
 
