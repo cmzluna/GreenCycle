@@ -11,7 +11,7 @@ import './dbConfig.js';
 import usersRouter from './routes/users.router.js';
 import recyclesRouter from './routes/recycles.router.js';
 import viewsRouter from './routes/views.router.js';
-
+import checkJwt from "./auth0/auth0.js";
 import { PORT, URI_MONGO } from './config.js';
 
 const app = express();
@@ -25,6 +25,7 @@ app.use(express.urlencoded({extended: true,}));
 app.use(express.static(__dirname+"/public"));
 app.use(morgan('dev'));
 app.use(cors());
+app.use(checkJwt)
 /*
 estoy nos servira para aceptar las llamadas del front, debemos esperar a que este lista la URL del front para hacerlo funcional
 
