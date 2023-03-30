@@ -5,14 +5,15 @@ const View = styled.View`
   background-color: #dbe4c6;
   height: 100%;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const Header = styled.View`
   display: flex;
   padding: 10px;
+  margin: 10px;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
   height: 100px;
   width: 80%;
   background-color: #dbe4c6;
@@ -24,5 +25,6 @@ const Title = styled.Text`
   color: #94af9f;
   font-size: 32px;
 `;
+
 
 export {View, Header, Title};
