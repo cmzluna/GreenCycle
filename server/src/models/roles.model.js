@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
 
-const schemaRoles = new Schema({
+const rolesSchema = new Schema({
     name: {
         type: String
     }
 })
 
-export default model('Role', schemaRoles);
+export default rolesModel=  model('Roles', rolesSchema);

@@ -5,6 +5,7 @@ import mongoStore from 'connect-mongo';
 import handlebars from 'express-handlebars';
 import morgan from 'morgan';
 import cors from 'cors';
+import passport from 'passport';
 // CUSTOM IMPORTS
 import {__dirname} from "./utils.js" ;
 import './dbConfig.js';
@@ -57,6 +58,10 @@ app.use(
     })
     )
 
+// PASSPORT CONFIGURATION
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 // ROUTES
 app.use('/GreenCycle/views', viewsRouter)  
@@ -64,10 +69,11 @@ app.use('/GreenCycle/users', usersRouter)
 app.use('/GreenCycle/recycles', recyclesRouter)
 
 app.get('/',(req,res)=>{
-  res.redirect('/views/login')
+  res.redirect('/GreenCycle/views/login')
 })
 
 
 
-app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')}`));
+app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')} ---> http://localhost:3000`));
+
 
