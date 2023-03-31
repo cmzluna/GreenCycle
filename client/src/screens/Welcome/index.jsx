@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {Title, Container} from './styles';
 import {Button} from 'react-native';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
 import Auth0, {useAuth0} from 'react-native-auth0';
 import jwtDecode from 'jwt-decode';
 import config from '../../../auth0-configuration';
@@ -11,12 +10,9 @@ import {signIn} from '../../store/slices/user';
 
 const Welcome = () => {
   const {authorize, clearSession, user} = useAuth0();
-  const isLoggedIn = user !== undefined && user !== null;
   const idTokenExists = useSelector(state => state.user.idToken);
   const {navigate} = useNavigation();
-
   const dispatch = useDispatch();
-
   const auth0 = new Auth0({
     domain: config.domain,
     clientId: config.clientId,
