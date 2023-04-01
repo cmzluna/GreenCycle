@@ -1,35 +1,33 @@
 import { Schema, model } from "mongoose";
 
-const recyclesSchema = new Schema({
+
+const scoresSchema = new Schema({
     currentPoints: {
         type: Number,
-       // required: true,
-
+        // required: true,
     },
-    materialType: {
-        type: String,
-       // required: true
-    },
-    currentWeight:{
+    currentBottles: {
         type: Number,
-       // required: true
     },
-   /* userID:{
+    currentWeight: {
+        type: Number,
+    },
+    userId: {
         type: Schema.Types.ObjectId,
         ref: 'Users',
         required: true
-    }*/
+    }
 })
 
-recyclesSchema.path("currentPoints").set(function(currentPoints){
+scoresSchema.path("currentPoints").set(function (currentPoints) {
     //currentPoints = this.currentPoints * this.currentWeight; 
     console.log(currentPoints, this.currentPoints, this.currentWeight)
     return currentPoints;
-    
+
     //con esta funcion seteadora nos evitamos tener que hacer ese cálculo en cada request en los endpoints  
     //en el esquema  debo acceder a los datos del request 
 });
 
-export const recyclesModel = model('Recycles', recyclesSchema)
+export const scoresModel = model('Scores', scoresSchema)
 
 
