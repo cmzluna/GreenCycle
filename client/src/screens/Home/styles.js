@@ -61,5 +61,18 @@ const DotsBtn=styled.TouchableOpacity`
   align-items:center;
   margin-right:5px;
 `
+const BoxHomeTag=styled.View`
+  width: 90%;
+  height: 30%;
+  border: 2px solid black;
+`
+const BoxUserPoints=styled.View`
+  width: 100%;
+  height: 60%;
+  border: 2px solid red;
+  border-radius: 10 ;
+  display: flex;
+  flex-direction:row ;
+`
 
-export {View, Header, TitleHome,ProfileBtn,NavbarHome,DotsBtn};
+export {View, Header, TitleHome,ProfileBtn,NavbarHome,DotsBtn,BoxHomeTag,BoxUserPoints};
