@@ -25,6 +25,7 @@ app.use(express.urlencoded({extended: true,}));
 app.use(express.static(__dirname+"/public"));
 app.use(morgan('dev'));
 app.use(cors());
+// app.use(checkJwt)
 /*
 estoy nos servira para aceptar las llamadas del front, debemos esperar a que este lista la URL del front para hacerlo funcional
 

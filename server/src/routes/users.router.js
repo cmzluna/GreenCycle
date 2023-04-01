@@ -21,6 +21,7 @@ const router = Router()
 
 
 // REGISTRO CON PASSPORT
+
 router.post(
     '/register',
     passport.authenticate('register', {
