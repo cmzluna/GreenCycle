@@ -11,7 +11,7 @@ import './dbConfig.js';
 import usersRouter from './routes/users.router.js';
 import recyclesRouter from './routes/recycles.router.js';
 import viewsRouter from './routes/views.router.js';
-
+import bottlesRouter from './routes/bottles.router.js'
 import { PORT, URI_MONGO } from './config.js';
 
 const app = express();
@@ -62,12 +62,14 @@ app.use(
 app.use('/GreenCycle/views', viewsRouter)  
 app.use('/GreenCycle/users', usersRouter)  
 app.use('/GreenCycle/recycles', recyclesRouter)
+app.use('/GreenCycle/bottles', bottlesRouter)
 
+// ROOT PATH 
 app.get('/',(req,res)=>{
-  res.redirect('/views/login')
+  res.redirect('GreenCycle/views/login')
 })
 
 
 
-app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')}`));
+app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')} => http://localhost:3000`));
 
