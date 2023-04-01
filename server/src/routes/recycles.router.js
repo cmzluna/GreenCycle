@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { recyclesModel} from '../models/recycles.model.js'
-import RecyclesManager from "../services/recyclesManager.js";
+import { recyclesModel} from '../models/scores.model.js'
+import RecyclesManager from "../services/scores.service.js";
 
 const router = Router();
 const recycles_manager = new RecyclesManager();
