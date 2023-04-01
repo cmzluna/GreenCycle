@@ -41,3 +41,11 @@ async getOnebyId(idUser){
     }
   }*/
 }
+
+export const getScorebyAttribute= async (req,res) =>{
+    
+}
+
+export const updateScorebyAttribute= async (req,res) =>{
+    
+}
