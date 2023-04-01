@@ -74,5 +74,17 @@ const BoxUserPoints=styled.View`
   display: flex;
   flex-direction:row ;
 `
+const CounterLevel=styled.View`
+  display: flex;
+  width: 100%;
+  height: 80%;
+  flex-direction:row ;
+  align-items:center;
+  justify-content:space-evenly;
+`
 
-export {View, Header, TitleHome,ProfileBtn,NavbarHome,DotsBtn,BoxHomeTag,BoxUserPoints};
+export {View, Header, 
+  TitleHome,ProfileBtn,
+  NavbarHome,DotsBtn,
+  BoxHomeTag,BoxUserPoints,
+  CounterLevel};

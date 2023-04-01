@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, StyleSheet, Text} from 'react-native';
-import {Header, TitleHome, View,ProfileBtn,NavbarHome, DotsBtn,BoxHomeTag,BoxUserPoints} from './styles';
+import {Header, TitleHome, View,ProfileBtn,NavbarHome, DotsBtn,BoxHomeTag,BoxUserPoints,CounterLevel} from './styles';
 import {useAuth0} from 'react-native-auth0';
 import {useDispatch} from 'react-redux';
 import {signOut} from '../../store/slices/user';
@@ -38,7 +38,27 @@ const Home = () => {
         </BoxUserPoints>
       </BoxHomeTag>
       <BoxHomeTag>
-        <Text>Estadisticas</Text>
+        <Text style={dataStyles.fontData}>Estadisticas</Text>
+        <CounterLevel>
+            
+            <View style={dataStyles.boxValues}>
+              <Text>Plasticos</Text>
+              <View style={dataStyles.circleBox}>
+              <Text>
+                15grs
+              </Text>
+            </View>
+            </View>
+            <View style={dataStyles.boxValues}>
+            <Text>Vidrios</Text>
+            <View style={dataStyles.circleBox}>
+              <Text>
+                5grs
+              </Text>
+            </View>
+            </View>
+
+        </CounterLevel>
       </BoxHomeTag>
       <BoxHomeTag>
       <Text>mini mapa</Text>
@@ -99,6 +119,28 @@ const pointsText=StyleSheet.create({
     fontSize:16,
     color:'black',
     fontWeight:600
+  }
+})
+const dataStyles=StyleSheet.create({
+  fontData:{
+    fontWeight:600,
+    fontSize:16,
+    color:'black'
+  },
+  boxValues:{
+    width:'35%',
+    height:'100%',
+    display:'flex',
+    justifyContent:'space-around'
+  },
+  circleBox:{
+    borderWidth:5,
+    borderColor:'blue',
+    height:80,
+    width:80,
+    borderRadius:80,
+   
+
   }
 })
 export default Home;
