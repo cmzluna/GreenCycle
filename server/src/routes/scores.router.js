@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { recyclesModel} from '../models/recycles.model.js'
-import RecyclesManager from "../services/recyclesManager.js";
+import { scoresModel} from '../models/scores.model.js'
+
 
 const router = Router();
-const recycles_manager = new RecyclesManager();
+
 
 router.get("/puntos", (req, res)=>{ 
     return res.json({message:"hola"});

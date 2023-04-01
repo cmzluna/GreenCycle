@@ -1,14 +1,29 @@
+
 import { usersModel } from '../models/users.model.js';
+import passport from "passport";
+
+
+export const authenticateUser = async() => passport.authenticate('register', {
+    failureRedirect: '/views/failRegister',
+    passReqToCallback: true
+}, (req, res) => {
+    res.redirect('/views/profile')
+})
+
 
 export const getAllUsers = async (req, res) => {
     try {
         let users = await usersModel.find();
-
         res.status(200).json(users)
     } catch (error) {
         return res.status(500).json({message: error.message});
     }
 };
+
+
+export const loginUser = async (req, res) =>{
+    res.json({ message: "This is user login" })
+}
 
 export const updateUser = async(req, res) => {
     try {
@@ -33,3 +48,7 @@ export const deleteUser = async(req, res) => {
         return res.status(500).json({message: error.message});
     }
 };
+
+export const getUser = async(req, res) => {
+    res.json({ message: "This is user profile" })
+}

@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 const View = styled.View`
   display: flex;
-  background-color: #dbe4c6;
+  background-color: #fff;
   height: 100%;
   width: 100%;
   justify-content: center;

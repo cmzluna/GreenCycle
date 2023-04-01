@@ -24,7 +24,7 @@ const usersSchema = new Schema({
     role: [
         {
           type: Schema.Types.ObjectId,
-          ref: 'Role',
+          ref: 'Roles',
         }
     ]
 })

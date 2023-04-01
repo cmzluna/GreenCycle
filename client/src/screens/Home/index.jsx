@@ -32,7 +32,7 @@ const Home = () => {
 const styles = StyleSheet.create({
   fontText: {
     fontSize:20,
-    fontWeight:700,
+    fontWeight:800,
     width:'80%',
     height:'100%',
     display:'flex',

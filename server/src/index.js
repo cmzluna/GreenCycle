@@ -9,9 +9,9 @@ import cors from 'cors';
 import {__dirname} from "./utils.js" ;
 import './dbConfig.js';
 import usersRouter from './routes/users.router.js';
-import recyclesRouter from './routes/recycles.router.js';
+import scoresRouter from './routes/scores.router.js';
 import viewsRouter from './routes/views.router.js';
-
+import bottlesRouter from './routes/bottles.router.js'
 import { PORT, URI_MONGO } from './config.js';
 
 const app = express();
@@ -25,6 +25,7 @@ app.use(express.urlencoded({extended: true,}));
 app.use(express.static(__dirname+"/public"));
 app.use(morgan('dev'));
 app.use(cors());
+// app.use(checkJwt)
 /*
 estoy nos servira para aceptar las llamadas del front, debemos esperar a que este lista la URL del front para hacerlo funcional
 
@@ -60,13 +61,15 @@ app.use(
 // ROUTES
 app.use('/GreenCycle/views', viewsRouter)  
 app.use('/GreenCycle/users', usersRouter)  
-app.use('/GreenCycle/recycles', recyclesRouter)
+app.use('/GreenCycle/scores', scoresRouter)
+app.use('/GreenCycle/bottles', bottlesRouter)
 
+// ROOT PATH 
 app.get('/',(req,res)=>{
-  res.redirect('/views/login')
+  res.redirect('GreenCycle/views/login')
 })
 
 
 
-app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')}`));
+app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')} => http://localhost:3000`));
 
