@@ -20,6 +20,8 @@ const router = Router()
 // })
 
 
+// REGISTRO CON PASSPORT
+
 router.post(
     '/register', authenticateUser
 );
