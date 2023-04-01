@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, Text} from 'react-native';
-import {Header, Title, View} from './styles';
+import {Button, StyleSheet, Text} from 'react-native';
+import {Header, TitleHome, View,ProfileBtn,NavbarHome, DotsBtn} from './styles';
 import {useAuth0} from 'react-native-auth0';
 import {useDispatch} from 'react-redux';
 import {signOut} from '../../store/slices/user';
@@ -18,11 +18,27 @@ const Home = () => {
   return (
     <View>
       <Header>
-        <Title>GreenCycle Home Screen</Title>
+        <NavbarHome>
+         <ProfileBtn><Text>T</Text></ProfileBtn>
+        <TitleHome> Green Cycle </TitleHome>
+          <DotsBtn><Text style={styles.fontText}>. . .</Text></DotsBtn>
+        </NavbarHome>
         <Button onPress={onLogout} title={'Log Out'} />
+        <Text>hola</Text>
       </Header>
     </View>
   );
 };
+const styles = StyleSheet.create({
+  fontText: {
+    fontSize:20,
+    fontWeight:700,
+    width:'80%',
+    height:'100%',
+    display:'flex',
+    justifyContent:'space-between',
+    alignItems:'center'
+  }
+});
 
 export default Home;
