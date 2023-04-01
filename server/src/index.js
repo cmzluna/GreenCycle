@@ -9,7 +9,7 @@ import cors from 'cors';
 import {__dirname} from "./utils.js" ;
 import './dbConfig.js';
 import usersRouter from './routes/users.router.js';
-import recyclesRouter from './routes/recycles.router.js';
+import scoresRouter from './routes/scores.router.js';
 import viewsRouter from './routes/views.router.js';
 import bottlesRouter from './routes/bottles.router.js'
 import { PORT, URI_MONGO } from './config.js';
@@ -61,7 +61,7 @@ app.use(
 // ROUTES
 app.use('/GreenCycle/views', viewsRouter)  
 app.use('/GreenCycle/users', usersRouter)  
-app.use('/GreenCycle/recycles', recyclesRouter)
+app.use('/GreenCycle/scores', scoresRouter)
 app.use('/GreenCycle/bottles', bottlesRouter)
 
 // ROOT PATH 
