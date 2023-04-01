@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { usersModel } from '../models/users.model.js'
-import { getAllUsers, updateUser, deleteUser } from '../controllers/users.controllers.js';
+import { getAllUsers, updateUser, authenticateUser, loginUser, deleteUser, getUser} from '../services/users.services.js';
 import passport from "passport";
 
 const router = Router()
@@ -23,27 +23,18 @@ const router = Router()
 // REGISTRO CON PASSPORT
 
 router.post(
-    '/register',
-    passport.authenticate('register', {
-        failureRedirect: '/views/failRegister',
-        passReqToCallback: true
-    }, (req, res) => {
-        res.redirect('/views/profile')
-    })
-)
-
-
-router.post('/login', (req, res) => {
-    res.json({ message: "This is user login" })
-})
-
-router.get('/profile', (req, res) => {
-    res.json({ message: "This is user profile" })
-})
+    '/register', authenticateUser
+);
 
 router.get('/allUsers', getAllUsers);
 
-router.put('/updateUser', updateUser);
+router.post(
+    '/login', loginUser);
+
+    router.put('/updateUser', updateUser);
+
+
+router.get('/profile', getUser)
 
 router.delete('/deleteUser', deleteUser);
 
