@@ -1,7 +1,8 @@
 import { Router } from "express";
 import { usersModel } from '../models/users.model.js'
-import { getAllUsers, updateUser, authenticateUser, loginUser, deleteUser, getUser} from '../services/users.services.js';
+import { getAllUsers, updateUser, createUser, loginUser, deleteUser, getUser} from '../services/users.services.js';
 import passport from "passport";
+
 
 const router = Router()
 
@@ -20,10 +21,10 @@ const router = Router()
 // })
 
 
-// REGISTRO CON PASSPORT
+
 
 router.post(
-    '/register', authenticateUser
+    '/registerUser',createUser
 );
 
 router.get('/allUsers', getAllUsers);
