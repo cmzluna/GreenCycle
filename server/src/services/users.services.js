@@ -3,12 +3,22 @@ import { usersModel } from '../models/users.model.js';
 import passport from "passport";
 
 
-export const authenticateUser = async() => passport.authenticate('register', {
-    failureRedirect: '/views/failRegister',
-    passReqToCallback: true
-}, (req, res) => {
-    res.redirect('/views/profile')
-})
+export const createUser = async(req, res, next) => {
+    const  {firstName, lastName, email, password}= req.body //destructuryng
+    const user = new usersModel({
+        firstName, lastName, email, password
+    });
+    usersModel.register(user, password, (err, user) =>{
+        if (err) {
+            console.log(err);
+            return res.render('registro', { error: err.message });
+          }
+          passport.authenticate('local')(req, res, function () {
+        });
+    });
+    return res.status(200).json('usuario creado con éxito');
+}
+
 
 
 export const getAllUsers = async (req, res) => {

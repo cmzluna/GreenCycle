@@ -12,7 +12,7 @@ import usersRouter from './routes/users.router.js';
 import scoresRouter from './routes/scores.router.js';
 import viewsRouter from './routes/views.router.js';
 import bottlesRouter from './routes/bottles.router.js'
-import { PORT, URI_MONGO } from './config.js';
+import { PORT, URI_MONGO } from './const.js';
 
 const app = express();
 
@@ -71,5 +71,5 @@ app.get('/',(req,res)=>{
 
 
 
-app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')} => http://localhost:3000`));
+app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')} => http://localhost:4200`));
 

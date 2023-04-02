@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+import passportlocal from 'passport-local-mongoose'; 
 const usersSchema = new Schema({
     firstName:{
         type: String,
@@ -18,15 +18,18 @@ const usersSchema = new Schema({
         type: String,
         required: true,
     },
-    image:{
-        type: String,
-    },
-    role: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Roles',
-        }
-    ]
+    //image:{
+        //type: String,
+    //},
+    //role: [
+        //{
+        //  type: Schema.Types.ObjectId,
+        //  ref: 'Roles',
+       // }
+  //  ]
 })
+usersSchema.plugin(passportlocal, {
+    usernameField: 'email'
+});
 
 export const usersModel = model('Users', usersSchema)
