@@ -31,3 +31,19 @@ export const validateString = str => !!(typeof str === 'string');
 
 export const validateNumber = num =>
   typeof num === 'number' && !Number.isNaN(Number(num));
+
+export const validateQr = data => {
+  const qrData = isValidJson(data) && JSON.parse(data);
+  const isValidQrData = validateObject(qrData) && !!Object.keys(qrData).length;
+
+  if (!isValidQrData) false;
+
+  const {location, points} = qrData;
+
+  if (
+    !(location && validateString(location) && points && validateNumber(points))
+  )
+    return false;
+
+  return true;
+};

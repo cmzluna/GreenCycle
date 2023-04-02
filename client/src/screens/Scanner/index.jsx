@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {BarCodeScanner} from 'expo-barcode-scanner/build/BarCodeScanner';
 import {
   Wrapper,
-  CameraWrapper,
   ScannerWrapper,
   Overlay,
   TopPadding,
@@ -11,12 +10,7 @@ import {
   BottomPadding,
   ViewFinder,
 } from './styles';
-import {
-  isValidJson,
-  validateNumber,
-  validateString,
-  validateObject,
-} from '../../utils';
+import {validateQr} from '../../utils';
 
 const Scanner = ({navigation: {navigate}}) => {
   const [scanned, setScanned] = useState(false);
@@ -26,28 +20,6 @@ const Scanner = ({navigation: {navigate}}) => {
     offsetX: 0,
     offsetY: 0,
   });
-
-  const validateQr = data => {
-    const qrData = isValidJson(data) && JSON.parse(data);
-    const isValidQrData =
-      validateObject(qrData) && !!Object.keys(qrData).length;
-
-    if (!isValidQrData) false;
-
-    const {location, points} = qrData;
-
-    if (
-      !(
-        location &&
-        validateString(location) &&
-        points &&
-        validateNumber(points)
-      )
-    )
-      return false;
-
-    return true;
-  };
 
   const handleOnBarCodeScanned = scannedValue => {
     if (!scannedValue) return null;
