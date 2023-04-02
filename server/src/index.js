@@ -57,19 +57,16 @@ app.use(
     })
     )
 
-
 // ROUTES
-app.use('/GreenCycle/views', viewsRouter)  
-app.use('/GreenCycle/users', usersRouter)  
-app.use('/GreenCycle/scores', scoresRouter)
-app.use('/GreenCycle/bottles', bottlesRouter)
+app.use('/GreenCycle/views', viewsRouter);  
+app.use('/GreenCycle/users', usersRouter);  
+app.use('/GreenCycle/scores', scoresRouter);
+app.use('/GreenCycle/bottles', bottlesRouter);
 
 // ROOT PATH 
 app.get('/',(req,res)=>{
-  res.redirect('GreenCycle/views/login')
+  res.redirect('GreenCycle/views/login');
 })
-
-
 
 app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')} => http://localhost:4200`));
 
