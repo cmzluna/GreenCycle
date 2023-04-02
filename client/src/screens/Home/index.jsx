@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, StyleSheet, Text} from 'react-native';
-import {Header, TitleHome, View,ProfileBtn,NavbarHome, DotsBtn,BoxHomeTag,BoxUserPoints,CounterLevel} from './styles';
+import {Header, TitleHome, View,ProfileBtn,NavbarHome, DotsBtn,BoxHomeTag,BoxUserPoints,CounterLevel,MapDisplay} from './styles';
 import {useAuth0} from 'react-native-auth0';
 import {useDispatch} from 'react-redux';
 import {signOut} from '../../store/slices/user';
@@ -28,12 +28,14 @@ const Home = () => {
         <Text style={textUser.welcome}>Hola Usuario</Text>
       </View>
         <BoxUserPoints>
-          <View style={pointsText.boxContainer} >
+          <View style={pointsText.boxContainerPoints} >
           <Text style={pointsText.fontTextPoints}>Puntaje acumulado</Text>
           <Text style={pointsText.fontPoints}>1400</Text>
           </View>
           <View style={pointsText.boxContainer}>
-          <Text>Tu crecimiento</Text>
+          <Text style={pointsText.fontTextPoints}>Tu crecimiento</Text>
+          <Text style={pointsText.fontTextPoints}>logo</Text>
+
           </View>
         </BoxUserPoints>
       </BoxHomeTag>
@@ -42,27 +44,20 @@ const Home = () => {
         <CounterLevel>
             
             <View style={dataStyles.boxValues}>
-              <Text>Plasticos</Text>
+              <Text style={dataStyles.fontData}>Plasticos</Text>
               <View style={dataStyles.circleBox}>
               <Text>
                 15grs
               </Text>
             </View>
             </View>
-            <View style={dataStyles.boxValues}>
-            <Text>Vidrios</Text>
-            <View style={dataStyles.circleBox}>
-              <Text>
-                5grs
-              </Text>
-            </View>
-            </View>
+           
 
         </CounterLevel>
       </BoxHomeTag>
       <BoxHomeTag>
-      <Text>mini mapa</Text>
-
+      <Text style={dataStyles.fontData}>Centros de reciclaje</Text>
+        <MapDisplay></MapDisplay>
       </BoxHomeTag>
       </Header>
     </View>
@@ -104,11 +99,20 @@ const textUser=StyleSheet.create({
 })
 const pointsText=StyleSheet.create({
   boxContainer:{
-    width:'50%',
-    height:'100%',
+    width:'100%',
+    height:'50%',
     display:'flex',
-    flexDirection:'column',
-    justifyContent:'space-around'
+    flexDirection:'row',
+    justifyContent:'space-around',
+  },
+  boxContainerPoints:{
+    width:'100%',
+    height:'50%',
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'space-around',
+    backgroundColor:'green',
+    borderRadius:10,
   },
   fontPoints:{
     fontSize:28,
@@ -125,22 +129,20 @@ const dataStyles=StyleSheet.create({
   fontData:{
     fontWeight:600,
     fontSize:16,
-    color:'black'
+    color:'green'
   },
   boxValues:{
     width:'35%',
-    height:'100%',
+    height:'80%',
     display:'flex',
     justifyContent:'space-around'
   },
   circleBox:{
-    borderWidth:5,
+    borderWidth:8,
     borderColor:'blue',
     height:80,
     width:80,
     borderRadius:80,
-   
-
   }
 })
 export default Home;
