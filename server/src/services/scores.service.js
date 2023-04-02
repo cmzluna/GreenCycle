@@ -31,15 +31,7 @@ async getOnebyId(idUser){
       console.log(error);
     }
   }
-
-  async updateOne(idUser,objUser){
-    try {
-      const updateUser = await usersModel.updateOne({_id:idUser},{$set:objUser})
-      return updateUser
-    } catch (error) {
-      console.log(error);
-    }
-  }*/
+*/
 }
 
 export const getScorebyAttribute= async (req,res) =>{
