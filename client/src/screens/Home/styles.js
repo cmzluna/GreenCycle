@@ -16,8 +16,8 @@ const Header = styled.View`
   flex-direction:column ;
   height: 100%;
   width: 100%;
-  background-color: #ffffff;
-  border: 1px solid #94af9f;
+  background-color: #FBFDF9;
+  
 `;
 
 const TitleHome = styled.Text`
@@ -39,7 +39,6 @@ const ProfileBtn=styled.TouchableOpacity`
   border-radius:30px ;
   justify-content: center;
   align-items:center;
-  
 `
 const NavbarHome=styled.View`
   width: 100%;
