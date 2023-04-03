@@ -1,43 +1,49 @@
 import { scoresModel } from "../models/scores.model.js";
 
-export default class ScoresManager {
-  /*async getAll() {
-    try {
-      const users = await usersModel.find().populate('courses').lean()
-      return users
-    } catch (error) {
-      console.log(error)
-    }
-  }*/
+//5 POINTS FOR BOTTLE
+export const getCurrentPoints = async (req, res) => {
+  const { userId } = req.params;
+                                                      //$natural= último valor guardado en mongoose
+  const lastScore = await scoresModel.findOne({ userId }).sort({ $natural: -1 });
 
-  async createScore(object) {
-    try {
-        console.log(object);
-      const newScore = await scoresModel.create(object)
-      return newScore;
-    } catch (error) {
-      console.log(error)
-    }
+  if (!lastScore) {
+    return res.status(404).json({ message: "404" });
   }
-/*
-  async getOnebyId(idUser){
-    try {
-      const user = a
-async getOnebyId(idUser){
-    try {
-      const user = await usersModel.findOne({_id:idUser}).populate('courses').lean()
-      return user
-    } catch (error) {
-      console.log(error);
-    }
+
+  const { currentPoints } = lastScore;
+
+  return res.json({ currentPoints });
+};
+
+//EACH BOTTLE
+export const getCurrentBottles = async (req, res) => {
+  const { userId } = req.params;
+
+  const lastScore = await scoresModel.findOne({ userId }).sort({ $natural: -1 });
+
+  if (!lastScore) {
+    return res.status(404).json({ message: "404" });
   }
-*/
-}
 
-export const getScorebyAttribute= async (req,res) =>{
-    
-}
+  const { currentBottles } = lastScore;
 
-export const updateScorebyAttribute= async (req,res) =>{
-    
-}
+  return res.json({ currentBottles });
+};
+
+//WEIGHT 9gr PER BOTTLE
+export const getCurrentWeight = async (req, res) => {
+  const { userId } = req.params;
+
+  const lastScore = await scoresModel.findOne({ userId }).sort({ $natural: -1 });
+
+  if (!lastScore) {
+    return res.status(404).json({ message: "Score not found" });
+  }
+
+  const { currentWeight } = lastScore;
+
+  return res.json({ currentWeight });
+};
+
+
+
