@@ -43,7 +43,7 @@ const ProfileBtn=styled.TouchableOpacity`
 const NavbarHome=styled.View`
   width: 100%;
   height: 50px;
-  background: green;
+  background: #6AC52D;
   display: flex;
   align-items:center;  
   flex-direction:row;

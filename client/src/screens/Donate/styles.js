@@ -14,7 +14,7 @@ const Container = styled.View`
 const NavbarHome=styled.View`
   width: 100%;
   height: 50px;
-  background: green;
+  background: #6AC52D;
   display: flex;
   align-items:center;  
   flex-direction:row;
@@ -54,13 +54,13 @@ const DotsBtn=styled.TouchableOpacity`
 const BoxPointsData=styled.View`
   height: 20%;
   width: 90%;
-  border: 2px solid black;
+  border: 1px solid #6AC52D;
+  border-Radius:15px ;
   margin-top:20px;
 `
 const TicketsAviable=styled.View`
   width: 90%;
   height: 65% ;
-  border: 2px solid black;
   display: flex;
   flex-direction:column;
   justify-content:space-between;
@@ -74,8 +74,27 @@ const TagsContainer=styled.View`
     align-Items:center;
     justify-Content:space-around;
 `
+const BoxTickets=styled.View`
+  height: 140px;
+  width: 100%;
+  border: 1px solid #6AC52D;
+  border-Radius:15px ;
+  display :flex ;
+  margin-top: 30px ;
+  flex-Direction:row;
+  justify-Content:space-around;
+`
+const ContainerGiftData=styled.View`
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-Direction:column;
+  justify-Content:space-around;
+  align-Items:center;
 
+`
 export {Container, NavbarHome
         ,ProfileBtn,TitleHome
         ,DotsBtn,BoxPointsData
-        ,TicketsAviable,TagsContainer};
+        ,TicketsAviable,TagsContainer
+        ,BoxTickets,ContainerGiftData};
