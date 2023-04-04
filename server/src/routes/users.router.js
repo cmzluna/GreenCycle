@@ -39,6 +39,8 @@ router.get('/profile', getUser)
 
 router.delete('/deleteUser', deleteUser);
 
+
+
 export default router
 
 
