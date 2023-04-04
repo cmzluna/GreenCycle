@@ -1,49 +1,40 @@
 import { scoresModel } from "../models/scores.model.js";
 
-//5 POINTS FOR BOTTLE
-export const getCurrentPoints = async (req, res) => {
-  const { userId } = req.params;
-                                                      //$natural= último valor guardado en mongoose
-  const lastScore = await scoresModel.findOne({ userId }).sort({ $natural: -1 });
+/* move to external variables file */
+const POINTS_BY_BOTTLE = 5;
+const WEIGHT_BY_BOTTLE = 9;
 
-  if (!lastScore) {
-    return res.status(404).json({ message: "404" });
-  }
-
-  const { currentPoints } = lastScore;
-
-  return res.json({ currentPoints });
-};
-
-//EACH BOTTLE
-export const getCurrentBottles = async (req, res) => {
+export const getUserScores = async (req, res) => {
   const { userId } = req.params;
 
-  const lastScore = await scoresModel.findOne({ userId }).sort({ $natural: -1 });
+  const lastScore = await scoresModel.findOne({ userId });
 
-  if (!lastScore) {
-    return res.status(404).json({ message: "404" });
-  }
+  if (!lastScore) res.status(404).json({ message: "404" });
 
-  const { currentBottles } = lastScore;
-
-  return res.json({ currentBottles });
+  return res.json(lastScore);
 };
 
-//WEIGHT 9gr PER BOTTLE
-export const getCurrentWeight = async (req, res) => {
-  const { userId } = req.params;
+export const updateUserScores = async (req, res) => {
+  const { userId, bottlesQuantity } = req.body;
 
-  const lastScore = await scoresModel.findOne({ userId }).sort({ $natural: -1 });
+  const score = await scoresModel.findOne({ userId });
 
-  if (!lastScore) {
-    return res.status(404).json({ message: "Score not found" });
+  if (!score) {
+    const firstScore = await scoresModel.create({
+      userId,
+      currentPoints: POINTS_BY_BOTTLE * bottlesQuantity,
+      currentBottles: bottlesQuantity,
+      currentWeight: WEIGHT_BY_BOTTLE * bottlesQuantity,
+    });
+
+    return res.json(firstScore);
   }
 
-  const { currentWeight } = lastScore;
+  score.currentPoints += POINTS_BY_BOTTLE * bottlesQuantity;
+  score.currentBottles += bottlesQuantity;
+  score.currentWeight += WEIGHT_BY_BOTTLE * bottlesQuantity;
 
-  return res.json({ currentWeight });
+  await score.save();
+
+  return res.json(score);
 };
-
-
-
