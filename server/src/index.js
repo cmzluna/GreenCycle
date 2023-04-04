@@ -2,7 +2,7 @@
 import express from "express";
 import session from "express-session"; 
 import mongoStore from 'connect-mongo';
-import handlebars from 'express-handlebars'; //para manejo de plantillas
+import handlebars from 'express-handlebars'; 
 import morgan from 'morgan';
 import cors from 'cors';
 // CUSTOM IMPORTS
@@ -12,6 +12,7 @@ import usersRouter from './routes/users.router.js';
 import scoresRouter from './routes/scores.router.js';
 import viewsRouter from './routes/views.router.js';
 import bottlesRouter from './routes/bottles.router.js'
+import mapsRouter from './routes/maps.router.js'
 import { PORT, URI_MONGO } from './const.js';
 
 const app = express();
@@ -58,10 +59,16 @@ app.use(
     )
 
 // ROUTES
+
+app.use('/GreenCycle/views', viewsRouter)  
+app.use('/GreenCycle/users', usersRouter)  
+app.use('/GreenCycle/scores', scoresRouter)
+app.use('/GreenCycle/bottles', bottlesRouter)
 app.use('/GreenCycle/views', viewsRouter);  
 app.use('/GreenCycle/users', usersRouter);  
 app.use('/GreenCycle/scores', scoresRouter);
 app.use('/GreenCycle/bottles', bottlesRouter);
+
 
 // ROOT PATH 
 app.get('/',(req,res)=>{
