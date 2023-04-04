@@ -111,7 +111,7 @@ const pointsText=StyleSheet.create({
     display:'flex',
     flexDirection:'row',
     justifyContent:'space-around',
-    backgroundColor:'green',
+    backgroundColor:'#6AC52D',
     borderRadius:10,
   },
   fontPoints:{
@@ -129,7 +129,7 @@ const dataStyles=StyleSheet.create({
   fontData:{
     fontWeight:600,
     fontSize:16,
-    color:'green'
+    color:'#2E4A21'
   },
   boxValues:{
     width:'35%',
