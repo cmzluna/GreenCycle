@@ -1,18 +1,14 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model } from "mongoose";
 
 const bottlesSchema = new Schema({
-    userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Users',
-        required: true
-    },
-    pointsByBottle: {
-        type: Number
-    },
-    weightOfBottle: {
-        type: Number
-    }
-})
+  pointsByBottle: {
+    type: Number,
+    default: 5,
+  },
+  weightOfBottle: {
+    type: Number,
+    default: 9,
+  },
+});
 
-
-export const bottlesModel = model('Bottles', bottlesSchema)
+export const bottlesModel = model("Bottles", bottlesSchema);
