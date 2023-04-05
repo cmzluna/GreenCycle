@@ -7,15 +7,13 @@ import {
   SlideView,
   SlideText,
 } from './styles';
-import {Image, Text, View} from 'react-native';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Auth0, {useAuth0} from 'react-native-auth0';
+import {Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import Auth0 from 'react-native-auth0';
 import jwtDecode from 'jwt-decode';
 import config from '../../../auth0-configuration';
 import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../store/slices/user';
-import {StyleSheet} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import BaseButton from '../../components/BaseButton';
 
@@ -44,14 +42,10 @@ const slides = [
 ];
 
 const Welcome = () => {
-  const {authorize, clearSession, user} = useAuth0();
-  const isLoggedIn = user !== undefined && user !== null;
   const idTokenExists = useSelector(state => state.user.idToken);
   const {navigate} = useNavigation();
-
   const [slidersViewed, setSlidersViewed] = React.useState(false);
   const dispatch = useDispatch();
-
   const auth0 = new Auth0({
     domain: config.domain,
     clientId: config.clientId,
