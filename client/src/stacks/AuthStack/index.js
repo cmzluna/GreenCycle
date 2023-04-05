@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from '../../screens/Login';
 import Welcome from '../../screens/Welcome';
 import Register from '../../screens/Register';
+import ProfileRecord from '../../screens/Profile-Edit/Profile_Status';
 
 const AuthStackNav = createNativeStackNavigator();
 
@@ -14,7 +15,7 @@ const AuthStack = () => (
       options={{
         headerShown: false,
       }}
-    />
+    /> 
     <AuthStackNav.Screen
       name="Login"
       component={Login}

@@ -1,12 +1,16 @@
-import React from 'react';
-import {Button, StyleSheet, Text} from 'react-native';
+import React,{useState} from 'react';
+import { StyleSheet, Text} from 'react-native';
 import {Header, TitleHome, View,ProfileBtn,NavbarHome, DotsBtn,BoxHomeTag,BoxUserPoints,CounterLevel,MapDisplay} from './styles';
 import {useAuth0} from 'react-native-auth0';
 import {useDispatch} from 'react-redux';
 import {signOut} from '../../store/slices/user';
+import { useNavigation} from '@react-navigation/native';
+
 
 const Home = () => {
-  console.log('en HOME !!!');
+  const {navigate}=useNavigation()
+  const [count, setCount] = useState(1400);
+  const onPress = () => navigate("Welcome");
   const {authorize, clearSession, user, getCredentials, error} = useAuth0();
   const dispatch = useDispatch();
 
@@ -19,7 +23,7 @@ const Home = () => {
     <View>
       <Header>
         <NavbarHome>
-         <ProfileBtn><Text>T</Text></ProfileBtn>
+         <ProfileBtn onPress={onPress}><Text >T</Text></ProfileBtn>
         <TitleHome> Green Cycle </TitleHome>
           <DotsBtn><Text style={styles.fontText}>. . .</Text></DotsBtn>
         </NavbarHome>
@@ -30,7 +34,7 @@ const Home = () => {
         <BoxUserPoints>
           <View style={pointsText.boxContainerPoints} >
           <Text style={pointsText.fontTextPoints}>Puntaje acumulado</Text>
-          <Text style={pointsText.fontPoints}>1400</Text>
+          <Text style={pointsText.fontPoints}>{count}</Text>
           </View>
           <View style={pointsText.boxContainer}>
           <Text style={pointsText.fontTextPoints}>Tu crecimiento</Text>

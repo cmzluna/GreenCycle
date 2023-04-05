@@ -47,7 +47,6 @@ const MainStack = () => {
             tabBarIcon: ({color}) => <DonateIcon />,
           }}
         />
-
         <Tab.Screen
           name="Scanner"
           component={Scanner}
