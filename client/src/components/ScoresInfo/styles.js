@@ -6,7 +6,7 @@ const Container = styled.View`
   width: 100%;
   justify-content: center;
   align-items: center;
-  border: 1px solid #6ac52d;
+  border: 1px solid #7dc35d;
   border-radius: 8px;
 `;
 
@@ -19,9 +19,8 @@ const UserInfo = styled.View`
   height: 72px;
   color: #000;
   background-color: #6ac52d;
-  border: 1px solid green;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `;
 
 const GrowthIndicator = styled.View`
@@ -32,7 +31,6 @@ const GrowthIndicator = styled.View`
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  border: 1px solid green;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 `;

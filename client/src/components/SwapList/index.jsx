@@ -9,11 +9,15 @@ import {
   Button,
 } from './styles';
 import {FlatList, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-const Item = ({item, onPress, type}) => {
+const Item = ({item, onPress, type, navigate}) => {
+  console.log('navigate???', navigate);
+
   const handleOnPress = () => {
     // navigate to SwapConfirmation screen
     console.log('pressed! - navigate! ', item);
+    navigate('SwapConfirm');
   };
 
   console.log('item type', item.type);
@@ -35,6 +39,7 @@ const Item = ({item, onPress, type}) => {
 
 const SwapList = ({data, type}) => {
   const [selectedId, setSelectedId] = useState();
+  const {navigate} = useNavigation();
 
   const renderItem = ({item}) => {
     const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
@@ -47,6 +52,7 @@ const SwapList = ({data, type}) => {
         onPress={() => setSelectedId(item.id)}
         backgroundColor={backgroundColor}
         textColor={color}
+        navigate={navigate}
       />
     );
   };

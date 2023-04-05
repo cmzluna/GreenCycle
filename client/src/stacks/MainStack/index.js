@@ -13,6 +13,7 @@ import Scanner from '../../screens/Scanner';
 import {View} from 'react-native';
 import {promiseWrapper} from '../../utils';
 import {BarCodeScanner} from 'expo-barcode-scanner/build/BarCodeScanner';
+import SwapConfirm from '../../screens/SwapConfirm';
 
 const requestPermission = async () => {
   const [data] = await promiseWrapper(BarCodeScanner.requestPermissionsAsync());
@@ -30,14 +31,38 @@ const requestPermissionHandler = async ({navigate}) => {
 
 const ScannerBase = () => <View style={{flex: 1, backgroundColor: 'red'}} />;
 
+const SwapStack = () => {
+  const SwapStackNav = createNativeStackNavigator();
+
+  return (
+    <SwapStackNav.Navigator>
+      <SwapStackNav.Screen
+        name="SwapScreen"
+        component={Swap}
+        options={{
+          tabBarLabel: 'home',
+          tabBarIcon: ({color}) => <SwapIcon />,
+        }}
+      />
+      <SwapStackNav.Screen
+        name="SwapConfirm"
+        component={SwapConfirm}
+        options={{
+          tabBarLabel: 'home',
+          tabBarIcon: ({color}) => <SwapIcon />,
+        }}
+      />
+    </SwapStackNav.Navigator>
+  );
+};
+
 const TabStack = () => {
   const Tab = createMaterialBottomTabNavigator();
 
   return (
     <>
       <Tab.Navigator
-        activeColor="#DBE5DD"
-        inactiveColor="#fff"
+        initialRouteName="Home"
         labeled={false}
         shifting={true}
         barStyle={{
@@ -56,15 +81,20 @@ const TabStack = () => {
             component={Home}
             options={{
               tabBarLabel: 'home',
-              tabBarIcon: ({color}) => <HomeIcon />,
+              tabBarIcon: ({color, focused}) => (
+                <HomeIcon color={focused ? 'black' : 'white'} />
+              ),
             }}
           />
           <Tab.Screen
             name="Swap"
-            component={Swap}
+            component={SwapStack}
             options={{
               tabBarLabel: 'home',
-              tabBarIcon: ({color}) => <SwapIcon />,
+
+              tabBarIcon: ({color, focused}) => (
+                <SwapIcon color={focused ? 'black' : 'white'} />
+              ),
             }}
           />
           <Tab.Screen
@@ -73,7 +103,9 @@ const TabStack = () => {
             options={{
               barStyle: {display: 'none'},
               tabBarLabel: 'scanner',
-              tabBarIcon: ({color}) => <ScannerIcon />,
+              tabBarIcon: ({color, focused}) => (
+                <ScannerIcon color={focused ? 'black' : 'white'} />
+              ),
             }}
             listeners={({navigation}) => ({
               tabPress: e => {
@@ -87,7 +119,9 @@ const TabStack = () => {
             component={Map}
             options={{
               tabBarLabel: 'location',
-              tabBarIcon: ({color}) => <LocationIcon />,
+              tabBarIcon: ({color, focused}) => (
+                <LocationIcon color={focused ? 'black' : 'white'} />
+              ),
             }}
           />
           <Tab.Screen
@@ -95,7 +129,9 @@ const TabStack = () => {
             component={Locations}
             options={{
               tabBarLabel: 'book',
-              tabBarIcon: ({color}) => <BookIcon />,
+              tabBarIcon: ({color, focused}) => (
+                <BookIcon color={focused ? 'black' : 'white'} />
+              ),
             }}
           />
         </Tab.Group>

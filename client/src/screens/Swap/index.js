@@ -5,6 +5,7 @@ import ScoresInfo from '../../components/ScoresInfo';
 import SwapList from '../../components/SwapList';
 import SwipeableTabs from '../../components/SwipeableTabs';
 import ModalComponent from '../../components/Modal';
+import {getCurrentLevel} from '../../utils';
 
 const SwapData = [
   {
@@ -59,47 +60,6 @@ const DonateData = [
     icon: require('../../../assets/Icons/donateHand.png'),
   },
 ];
-
-const steps = [
-  {
-    level: 4,
-    label: 'Sequoia',
-    pointsNeeded: 60,
-    icon: require('../../../assets/levelsIcons/brote.png'),
-  },
-  {
-    level: 3,
-    label: 'Árbol',
-    pointsNeeded: 40,
-    icon: require('../../../assets/levelsIcons/brote.png'),
-  },
-  {
-    level: 2,
-    label: 'Brote',
-    pointsNeeded: 20,
-    icon: require('../../../assets/levelsIcons/brote.png'),
-  },
-  {
-    level: 1,
-    label: 'Semilla',
-    pointsNeeded: 10,
-    icon: require('../../../assets/levelsIcons/semilla.png'),
-  },
-  {
-    level: 0,
-    label: 'En proceso...',
-    pointsNeeded: 0,
-    icon: require('../../../assets/levelsIcons/semilla.png'),
-  },
-];
-
-export const getCurrentLevel = currentPoints => {
-  const currentLevel = steps.find(el => currentPoints >= el.pointsNeeded);
-
-  if (!currentLevel) return steps[steps.length - 1];
-
-  return currentLevel;
-};
 
 const Swap = () => {
   const [showModal, setShowModal] = useState(false);

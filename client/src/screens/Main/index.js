@@ -8,6 +8,11 @@ import store from '../../store';
 
 const Main = () => {
   const [auth, setAuth] = React.useState(() => store.getState().auth);
+  const navTheme = {
+    colors: {
+      background: '#171717',
+    },
+  };
 
   useEffect(() => {
     const unsubscribe = store.subscribe(() => {
@@ -21,7 +26,7 @@ const Main = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <AuthContextProvider>
-        <NavigationContainer>
+        <NavigationContainer theme={navTheme}>
           {!auth ? <AuthStack /> : <MainStack />}
         </NavigationContainer>
       </AuthContextProvider>
