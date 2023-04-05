@@ -37,14 +37,17 @@ const SwipeableTabs = ({data}) => {
 
   const [routes] = React.useState(initialState);
 
-  // returns object of type {"key": [ReactComponent]}
+  // returns object of type {"key": [ReactComponent(props)]}
   const sceneObj = data?.reduce((accum, curr) => {
-    const {key, Component, data = []} = curr;
-    const comp = () => <Component data={data} />;
+    const {key, Component, title = '', data = []} = curr;
+
+    console.log('title ==> ', title);
+    const comp = () => <Component data={data} type={title} />;
 
     return {...accum, [key]: comp};
   }, {});
 
+  // object that takes index's route and maps to React Component to render
   const renderScene = SceneMap(sceneObj);
 
   return (

@@ -6,8 +6,8 @@ const Container = styled.View`
   width: 100%;
   justify-content: center;
   align-items: center;
-  border: 2px solid green;
-  border-radius: 12px;
+  border: 1px solid #6ac52d;
+  border-radius: 8px;
 `;
 
 const UserInfo = styled.View`

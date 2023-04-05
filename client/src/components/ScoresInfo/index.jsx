@@ -11,7 +11,6 @@ import {
 import {Image} from 'react-native';
 
 const ScoresInfo = ({currentPoints, currentLevel, icon}) => {
-  console.log('icon', icon);
   return (
     <Container>
       <UserInfo>

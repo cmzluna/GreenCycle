@@ -6,24 +6,29 @@ import {
   InnerWrapper,
   ItemTitle,
   ItemPoints,
+  Button,
 } from './styles';
 import {FlatList, Image} from 'react-native';
 
-const Item = ({item, onPress, textColor}) => (
-  <ItemContainer onPress={onPress}>
-    <Wrapper>
-      <InnerWrapper>
-        <Image source={item.icon} />
-      </InnerWrapper>
-      <InnerWrapper>
-        <ItemTitle>{item.title}</ItemTitle>
-        <ItemPoints>{item.points} puntos</ItemPoints>
-      </InnerWrapper>
-    </Wrapper>
-  </ItemContainer>
-);
+const Item = ({item, onPress, textColor, type}) => {
+  console.log('item type', item.type);
+  return (
+    <ItemContainer onPress={onPress}>
+      <Wrapper>
+        <InnerWrapper>
+          <Image source={item.icon} />
+        </InnerWrapper>
+        <InnerWrapper>
+          <ItemTitle>{item.title}</ItemTitle>
+          <ItemPoints>{item.points} puntos</ItemPoints>
+          <Button title={type} onPress={() => console.log('pressed! ')} />
+        </InnerWrapper>
+      </Wrapper>
+    </ItemContainer>
+  );
+};
 
-const SwapList = ({data}) => {
+const SwapList = ({data, type}) => {
   const [selectedId, setSelectedId] = useState();
 
   const renderItem = ({item}) => {
@@ -33,6 +38,7 @@ const SwapList = ({data}) => {
     return (
       <Item
         item={item}
+        type={type}
         onPress={() => setSelectedId(item.id)}
         backgroundColor={backgroundColor}
         textColor={color}

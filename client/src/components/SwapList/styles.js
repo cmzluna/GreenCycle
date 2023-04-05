@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import BaseButton from '../../components/BaseButton';
 
 const Container = styled.View`
   display: flex;
@@ -9,7 +10,7 @@ const Container = styled.View`
 const ItemContainer = styled.TouchableOpacity`
   padding: 20px;
   margin: 8px;
-  height: 176;
+  height: 176px;
   border: 2px solid #6ac52d;
   border-radius: 14px;
 `;
@@ -37,4 +38,23 @@ const ItemPoints = styled.Text`
   font-size: 18px;
 `;
 
-export {Container, ItemContainer, Wrapper, ItemTitle, ItemPoints, InnerWrapper};
+const Button = styled(BaseButton)`
+  background-color: #dadd33;
+  border-radius: 8px;
+  margin-top: 11px;
+  height: 48px;
+  width: 128px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export {
+  Container,
+  ItemContainer,
+  Wrapper,
+  ItemTitle,
+  ItemPoints,
+  InnerWrapper,
+  Button,
+};

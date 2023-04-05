@@ -100,7 +100,6 @@ export const getCurrentLevel = currentPoints => {
   return currentLevel;
 };
 
-console.log('GET CURRENT LEVEL', getCurrentLevel(20));
 const Swap = () => {
   const scores = useSelector(state => state.scores);
   const {currentPoints, currentBottles, currentWeight} = scores;
