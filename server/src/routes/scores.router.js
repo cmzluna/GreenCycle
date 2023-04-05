@@ -1,16 +1,9 @@
-import { Router } from "express";
-import { scoresModel} from '../models/scores.model.js'
+import express from "express";
+import { getUserScores, updateUserScores } from "../services/scores.service.js";
 
+const router = express.Router();
 
-const router = Router();
-
-
-router.get("/puntos", (req, res)=>{ 
-    return res.json({message:"hola"});
-})
-
-router.post("/puntos",(req, res) => recycles_manager.createRecycle(req.body)); 
-
-
+router.get("/:userId/userScores", getUserScores);
+router.post("/:userId/updateScores", updateUserScores);
 
 export default router;
