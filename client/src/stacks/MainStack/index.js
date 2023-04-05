@@ -1,10 +1,10 @@
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import BookIcon from '../../components/Icons/BookIcon';
-import DonateIcon from '../../components/Icons/DonateIcon';
+import SwapIcon from '../../components/Icons/SwapIcon';
 import HomeIcon from '../../components/Icons/Home';
 import LocationIcon from '../../components/Icons/LocationIcon';
 import ScannerIcon from '../../components/Icons/Scanner';
-import Donate from '../../screens/Donate';
+import Swap from '../../screens/Swap';
 import Home from '../../screens/Home';
 import Locations from '../../screens/Locations';
 import Map from '../../screens/Map';
@@ -40,11 +40,11 @@ const MainStack = () => {
           }}
         />
         <Tab.Screen
-          name="Donate"
-          component={Donate}
+          name="Swap"
+          component={Swap}
           options={{
             tabBarLabel: 'home',
-            tabBarIcon: ({color}) => <DonateIcon />,
+            tabBarIcon: ({color}) => <SwapIcon />,
           }}
         />
 
