@@ -7,17 +7,17 @@ import {
   ItemTitle,
   ItemPoints,
 } from './styles';
-import {FlatList} from 'react-native';
+import {FlatList, Image} from 'react-native';
 
 const Item = ({item, onPress, textColor}) => (
   <ItemContainer onPress={onPress}>
     <Wrapper>
       <InnerWrapper>
-        <ItemTitle>{item.title}</ItemTitle>
+        <Image source={item.icon} />
       </InnerWrapper>
       <InnerWrapper>
         <ItemTitle>{item.title}</ItemTitle>
-        <ItemPoints>{item.points}</ItemPoints>
+        <ItemPoints>{item.points} puntos</ItemPoints>
       </InnerWrapper>
     </Wrapper>
   </ItemContainer>

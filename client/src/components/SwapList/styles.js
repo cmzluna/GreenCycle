@@ -9,6 +9,7 @@ const Container = styled.View`
 const ItemContainer = styled.TouchableOpacity`
   padding: 20px;
   margin: 8px;
+  height: 176;
   border: 2px solid #6ac52d;
   border-radius: 14px;
 `;
@@ -22,14 +23,18 @@ const Wrapper = styled.View`
 const InnerWrapper = styled.View`
   display: flex;
   flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ItemTitle = styled.Text`
-  font-size: 20px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
 `;
 
 const ItemPoints = styled.Text`
-  font-size: 12px;
+  font-size: 18px;
 `;
 
 export {Container, ItemContainer, Wrapper, ItemTitle, ItemPoints, InnerWrapper};

@@ -8,9 +8,10 @@ import {
   GrowthIndicator,
   GrowthTitle,
 } from './styles';
+import {Image} from 'react-native';
 
-const ScoresInfo = ({currentPoints, currentLevel}) => {
-  console.log('scores', currentPoints);
+const ScoresInfo = ({currentPoints, currentLevel, icon}) => {
+  console.log('icon', icon);
   return (
     <Container>
       <UserInfo>
@@ -20,7 +21,14 @@ const ScoresInfo = ({currentPoints, currentLevel}) => {
 
       <GrowthIndicator>
         <GrowthTitle>Tu crecimiento</GrowthTitle>
-        <GrowthTitle>Icon</GrowthTitle>
+        <Image
+          source={icon}
+          style={{
+            height: 45,
+            width: 50,
+            marginRight: 50,
+          }}
+        />
       </GrowthIndicator>
     </Container>
   );
