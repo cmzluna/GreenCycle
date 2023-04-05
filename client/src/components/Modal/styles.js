@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 const Container = styled.View`
   display: flex;
+<<<<<<< HEAD:client/src/screens/Donate/styles.js
   justify-content: space-between;
   align-items: center;
   flex-direction:column ;
@@ -50,6 +51,17 @@ const DotsBtn=styled.TouchableOpacity`
   justify-content:center;
   align-items:center;
   margin-right:5px;  
+=======
+  background-color: #fff;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30;
+`;
+
+const Title = styled.Text`
+  font-size: 20px;
+>>>>>>> claudio-swap-screen:client/src/components/Modal/styles.js
 `;
 const BoxPointsData=styled.View`
   height: 20%;
