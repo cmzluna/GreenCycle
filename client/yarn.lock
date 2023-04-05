@@ -2921,10 +2921,10 @@
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
     "@babel/plugin-syntax-top-level-await" "^7.8.3"
 
-"babel-preset-expo@~9.3.1":
-  "integrity" "sha512-1JL4T7q3uXu9FeJhLXDAKhFbWs75Qj2pixA60eR2ROzE9LnrKxm2g42OfcArS4vJcPj2NzcOdPpMI9/ZgF8i8Q=="
-  "resolved" "https://registry.npmjs.org/babel-preset-expo/-/babel-preset-expo-9.3.1.tgz"
-  "version" "9.3.1"
+"babel-preset-expo@~9.3.2":
+  "integrity" "sha512-BjyvjwjJG0MaaDBLP/esbXRrAItM76po9L9zfnLxeqgFsHCIPmD+6ir45coDLGAXwR8m9It3G1yqYM9JPyemsQ=="
+  "resolved" "https://registry.npmjs.org/babel-preset-expo/-/babel-preset-expo-9.3.2.tgz"
+  "version" "9.3.2"
   dependencies:
     "@babel/plugin-proposal-decorators" "^7.12.9"
     "@babel/plugin-proposal-object-rest-spread" "^7.12.13"
@@ -2932,7 +2932,7 @@
     "@babel/preset-env" "^7.20.0"
     "babel-plugin-module-resolver" "^4.1.0"
     "babel-plugin-react-native-web" "~0.18.10"
-    "metro-react-native-babel-preset" "0.73.8"
+    "metro-react-native-babel-preset" "0.73.9"
 
 "babel-preset-fbjs@^3.4.0":
   "integrity" "sha512-9ywCsCvo1ojrw0b+XYk7aFvTH6D9064t0RIL1rtMf3nsa02Xw41MS7sZw216Im35xj/UY0PDBQsa1brUDDF1Ow=="
@@ -4443,16 +4443,16 @@
     "invariant" "^2.2.4"
 
 "expo@*", "expo@^48.0.9":
-  "integrity" "sha512-RlYpJSny4g3G2sqAfx1taaT7QFEw2cIfYLlZWmguA6EQSCviaeaQU1m4tvVXU1jIXb/w8jqer18XIq56VuECfg=="
-  "resolved" "https://registry.npmjs.org/expo/-/expo-48.0.9.tgz"
-  "version" "48.0.9"
+  "integrity" "sha512-8YXG6um3ld36nu/ONEC0NNkMatdj4k/HwR7OUd3dKUt3PJSkZHsCeLXIu8za7WSWpgPAU/xAj35noPFEFnjO1w=="
+  "resolved" "https://registry.npmjs.org/expo/-/expo-48.0.10.tgz"
+  "version" "48.0.10"
   dependencies:
     "@babel/runtime" "^7.20.0"
     "@expo/cli" "0.6.2"
     "@expo/config" "8.0.2"
     "@expo/config-plugins" "6.0.1"
     "@expo/vector-icons" "^13.0.0"
-    "babel-preset-expo" "~9.3.1"
+    "babel-preset-expo" "~9.3.2"
     "cross-spawn" "^6.0.5"
     "expo-application" "~5.1.1"
     "expo-asset" "~8.9.1"
@@ -9159,9 +9159,9 @@
   "version" "4.8.4"
 
 "ua-parser-js@^0.7.30":
-  "integrity" "sha512-cJMeh/eOILyGu0ejgTKB95yKT3zOenSe9UGE3vj6WfiOwgGYnmATUsnDixMFvdU+rNMvWih83hrUP8VwhF9yXQ=="
-  "resolved" "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.34.tgz"
-  "version" "0.7.34"
+  "integrity" "sha512-veRf7dawaj9xaWEu9HoTVn5Pggtc/qj+kqTOFvNiN1l0YdxwC1kvel57UCjThjGa3BHBihE8/UJAHI+uQHmd/g=="
+  "resolved" "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.35.tgz"
+  "version" "0.7.35"
 
 "uglify-es@^3.1.9":
   "integrity" "sha512-r+MU0rfv4L/0eeW3xZrd16t4NZfK8Ld4SWVglYBb7ez5uXFWHuVRs6xCTrf1yirs9a4j4Y27nn7SRfO6v67XsQ=="
