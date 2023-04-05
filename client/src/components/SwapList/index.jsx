@@ -10,7 +10,12 @@ import {
 } from './styles';
 import {FlatList, Image} from 'react-native';
 
-const Item = ({item, onPress, textColor, type}) => {
+const Item = ({item, onPress, type}) => {
+  const handleOnPress = () => {
+    // navigate to SwapConfirmation screen
+    console.log('pressed! - navigate! ', item);
+  };
+
   console.log('item type', item.type);
   return (
     <ItemContainer onPress={onPress}>
@@ -21,7 +26,7 @@ const Item = ({item, onPress, textColor, type}) => {
         <InnerWrapper>
           <ItemTitle>{item.title}</ItemTitle>
           <ItemPoints>{item.points} puntos</ItemPoints>
-          <Button title={type} onPress={() => console.log('pressed! ')} />
+          <Button title={type} onPress={handleOnPress} />
         </InnerWrapper>
       </Wrapper>
     </ItemContainer>

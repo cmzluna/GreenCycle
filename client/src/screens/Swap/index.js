@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Container, TabLists} from './styles';
 import {useSelector} from 'react-redux';
 import ScoresInfo from '../../components/ScoresInfo';
 import SwapList from '../../components/SwapList';
 import SwipeableTabs from '../../components/SwipeableTabs';
+import ModalComponent from '../../components/Modal';
 
 const SwapData = [
   {
@@ -101,6 +102,7 @@ export const getCurrentLevel = currentPoints => {
 };
 
 const Swap = () => {
+  const [showModal, setShowModal] = useState(false);
   const scores = useSelector(state => state.scores);
   const {currentPoints, currentBottles, currentWeight} = scores;
 
@@ -135,6 +137,18 @@ const Swap = () => {
       <TabLists>
         <SwipeableTabs data={dataArray} />
       </TabLists>
+
+      {/*  Not implemented yet */}
+      <ModalComponent
+        isVisible={showModal}
+        onBackdropPress={() => setShowModal(false)}
+        onBackButtonPress={() => setShowModal(false)}>
+        <ScoresInfo
+          currentPoints={currentPoints}
+          currentLevel={getCurrentLevel(currentPoints).label}
+          icon={getCurrentLevel(currentPoints).icon}
+        />
+      </ModalComponent>
     </Container>
   );
 };
