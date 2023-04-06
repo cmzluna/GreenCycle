@@ -11,7 +11,7 @@ import {
 import {FlatList, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const Item = ({item, onPress, type, navigate}) => {
+const Item = ({item, onPress, type, currentPoints, navigate}) => {
   const handleOnPress = () => {
     navigate('SwapConfirm', {...item, type});
   };
@@ -25,14 +25,18 @@ const Item = ({item, onPress, type, navigate}) => {
         <InnerWrapper>
           <ItemTitle>{item.title}</ItemTitle>
           <ItemPoints>{item.points} puntos</ItemPoints>
-          <Button title={type} onPress={handleOnPress} />
+          <Button
+            title={type}
+            onPress={handleOnPress}
+            disabled={item.points > currentPoints}
+          />
         </InnerWrapper>
       </Wrapper>
     </ItemContainer>
   );
 };
 
-const SwapList = ({data, type}) => {
+const SwapList = ({data, type, currentPoints}) => {
   const [selectedId, setSelectedId] = useState();
   const {navigate} = useNavigation();
 
@@ -44,6 +48,7 @@ const SwapList = ({data, type}) => {
       <Item
         item={item}
         type={type}
+        currentPoints={currentPoints}
         onPress={() => setSelectedId(item.id)}
         backgroundColor={backgroundColor}
         textColor={color}

@@ -11,14 +11,28 @@ import {
 } from './styles';
 import {Image} from 'react-native';
 import {Provider, Portal, Modal} from 'react-native-paper';
+import {updateScore} from '../../store/slices/scores';
+import {useDispatch, useSelector} from 'react-redux';
 
 const SwapConfirm = ({route, navigation}) => {
+  const scores = useSelector(state => state.scores);
+  const {currentPoints, currentBottles, currentWeight} = scores;
   const {points, entityName, entityId, icon, type} = route.params;
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
+  const dispatch = useDispatch();
+
   const hideModal = () => {
+    // refactor to DRY:
+    const scoresToUpdate = {
+      currentPoints: currentPoints - points,
+      currentBottles: currentBottles,
+      currentWeight: currentWeight,
+    };
+
+    dispatch(updateScore(scoresToUpdate));
     setVisible(false);
-    return navigation.navigate('Home');
+    return navigation.navigate('SwapScreen');
   };
 
   const handleOnPress = () => showModal(true);

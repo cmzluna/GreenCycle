@@ -30,6 +30,7 @@ const SlideView = styled.View`
   display: flex;
   flex: 1;
   align-items: center;
+  justify-content: center;
 `;
 
 const SlideText = styled.Text`

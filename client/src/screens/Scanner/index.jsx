@@ -13,12 +13,11 @@ import {
   SubTitle,
   ProfileCircle,
   PointsText,
-  InnerProfileCircle,
 } from './styles';
 import {Image} from 'react-native';
 import {validateQr} from '../../utils';
 import {useDispatch, useSelector} from 'react-redux';
-import {addScore} from '../../store/slices/scores';
+import {updateScore} from '../../store/slices/scores';
 import {Provider, Portal, Modal} from 'react-native-paper';
 
 const Scanner = ({navigation: {navigate}}) => {
@@ -56,7 +55,7 @@ const Scanner = ({navigation: {navigate}}) => {
     if (!qrIsValid) return console.log('invalid QR');
 
     setObtainedScores(points);
-    dispatch(addScore(scoresToUpdate));
+    dispatch(updateScore(scoresToUpdate));
     // implement api POST request
     showModal();
   };

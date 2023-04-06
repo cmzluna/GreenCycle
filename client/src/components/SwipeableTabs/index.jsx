@@ -39,9 +39,11 @@ const SwipeableTabs = ({data}) => {
 
   // returns object of type {"key": [ReactComponent(props)]}
   const sceneObj = data?.reduce((accum, curr) => {
-    const {key, Component, title = '', data = []} = curr;
+    const {key, Component, title = '', data = [], currentPoints = 0} = curr;
 
-    const comp = () => <Component data={data} type={title} />;
+    const comp = () => (
+      <Component data={data} type={title} currentPoints={currentPoints} />
+    );
 
     return {...accum, [key]: comp};
   }, {});

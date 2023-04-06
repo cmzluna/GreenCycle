@@ -92,6 +92,7 @@ const Swap = () => {
       Component: SwapList,
       title: 'Canjear',
       data: SwapData,
+      currentPoints,
       // callback:
     },
     {
@@ -99,6 +100,7 @@ const Swap = () => {
       Component: SwapList,
       title: 'Donar',
       data: DonateData,
+      currentPoints,
       // callback:
     },
   ];
