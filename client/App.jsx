@@ -5,6 +5,9 @@ import {Provider} from 'react-redux';
 import store from './src/store';
 import config from './auth0-configuration';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import MapLibreGL from '@maplibre/maplibre-react-native';
+
+MapLibreGL.setAccessToken(null);
 
 function App() {
   return (
