@@ -13,9 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const Item = ({item, onPress, type, navigate}) => {
   const handleOnPress = () => {
-    // navigate to SwapConfirmation screen
-    console.log('pressed! - navigate! ', item);
-    navigate('SwapConfirm');
+    navigate('SwapConfirm', {...item, type});
   };
 
   return (
