@@ -7,7 +7,6 @@ import {
   Title,
   SubTitle,
   ProfileCircle,
-  InnerProfileCircle,
 } from './styles';
 import {Image} from 'react-native';
 import {Provider, Portal, Modal} from 'react-native-paper';
@@ -67,17 +66,13 @@ const SwapConfirm = ({route, navigation}) => {
           </Modal>
         </Portal>
 
-        {!visible && (
-          <>
-            <Title>Estás a punto de {type}...</Title>
-            <InnerWrapper>
-              <Image source={icon} />
-              <PointsText>{points} puntos</PointsText>
-              <SubTitle>{entityName}</SubTitle>
-              <Button title={type} onPress={handleOnPress} />
-            </InnerWrapper>
-          </>
-        )}
+        <Title>Estás a punto de {type}...</Title>
+        <InnerWrapper>
+          <Image source={icon} />
+          <PointsText>{points} puntos</PointsText>
+          <SubTitle>{entityName}</SubTitle>
+          <Button title={type} onPress={handleOnPress} />
+        </InnerWrapper>
       </Container>
     </Provider>
   );

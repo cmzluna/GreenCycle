@@ -13,6 +13,9 @@ import {useNavigation} from '@react-navigation/native';
 
 const Item = ({item, onPress, type, currentPoints, navigate}) => {
   const handleOnPress = () => {
+    if (item.points > currentPoints) {
+      // open popup
+    }
     navigate('SwapConfirm', {...item, type});
   };
 
@@ -25,11 +28,7 @@ const Item = ({item, onPress, type, currentPoints, navigate}) => {
         <InnerWrapper>
           <ItemTitle>{item.title}</ItemTitle>
           <ItemPoints>{item.points} puntos</ItemPoints>
-          <Button
-            title={type}
-            onPress={handleOnPress}
-            disabled={item.points > currentPoints}
-          />
+          <Button title={type} onPress={handleOnPress} />
         </InnerWrapper>
       </Wrapper>
     </ItemContainer>
