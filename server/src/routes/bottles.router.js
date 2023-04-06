@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { postBottle } from "../services/bottle.services.js";
+import { postBottle } from "../services/bottle.service.js";
 
 const router = Router()
 
