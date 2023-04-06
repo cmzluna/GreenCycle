@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
 
-const DonateIcon = props => (
+const SwapIcon = props => (
   <Svg
     width={21}
     height={21}
@@ -17,4 +17,4 @@ const DonateIcon = props => (
   </Svg>
 );
 
-export default DonateIcon;
+export default SwapIcon;

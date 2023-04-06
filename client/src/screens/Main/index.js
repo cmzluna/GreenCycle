@@ -14,6 +14,7 @@ const Main = () => {
       setAuth(store.getState().user.isLoggedIn);
     });
 
+    console.log('auth = ', auth);
     return unsubscribe;
   }, []);
 
