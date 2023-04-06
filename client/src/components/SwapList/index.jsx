@@ -12,15 +12,12 @@ import {FlatList, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 const Item = ({item, onPress, type, navigate}) => {
-  console.log('navigate???', navigate);
-
   const handleOnPress = () => {
     // navigate to SwapConfirmation screen
     console.log('pressed! - navigate! ', item);
     navigate('SwapConfirm');
   };
 
-  console.log('item type', item.type);
   return (
     <ItemContainer onPress={onPress}>
       <Wrapper>

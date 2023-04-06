@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, TabLists} from './styles';
 import {useSelector} from 'react-redux';
 import ScoresInfo from '../../components/ScoresInfo';
@@ -99,7 +99,7 @@ const Swap = () => {
       </TabLists>
 
       {/*  Not implemented yet */}
-      <ModalComponent
+      {/* <ModalComponent
         isVisible={showModal}
         onBackdropPress={() => setShowModal(false)}
         onBackButtonPress={() => setShowModal(false)}>
@@ -108,7 +108,7 @@ const Swap = () => {
           currentLevel={getCurrentLevel(currentPoints).label}
           icon={getCurrentLevel(currentPoints).icon}
         />
-      </ModalComponent>
+      </ModalComponent> */}
     </Container>
   );
 };

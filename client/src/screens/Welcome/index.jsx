@@ -71,8 +71,8 @@ const Welcome = () => {
         scope: 'openid email profile',
       });
       const user_details = jwtDecode(user_auth.idToken);
-      console.log('user_details ==> ', user_details);
-      console.log('user_auth.idToken = ', user_auth.idToken);
+      // console.log('user_details ==> ', user_details);
+      // console.log('user_auth.idToken = ', user_auth.idToken);
       dispatch(signIn({payload: user_auth.idToken}));
     } catch (e) {
       console.log(e);

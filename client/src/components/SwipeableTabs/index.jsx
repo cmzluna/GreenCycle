@@ -41,7 +41,6 @@ const SwipeableTabs = ({data}) => {
   const sceneObj = data?.reduce((accum, curr) => {
     const {key, Component, title = '', data = []} = curr;
 
-    console.log('title ==> ', title);
     const comp = () => <Component data={data} type={title} />;
 
     return {...accum, [key]: comp};

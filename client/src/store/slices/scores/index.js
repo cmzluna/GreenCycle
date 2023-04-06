@@ -7,13 +7,12 @@ export const scoresSlice = createSlice({
   initialState,
   reducers: {
     resetScores: () => initialState,
-    // to complete :
-    // addScore: (prevState, {payload}) => {
-    //   return {...prevState, isLoggedIn: true, idToken: payload.idToken};
-    // },
+    addScore: (prevState, {payload}) => {
+      return payload;
+    },
   },
 });
 
-export const {resetUser, signIn, signOut} = scoresSlice.actions;
+export const {resetScores, addScore} = scoresSlice.actions;
 
 export default scoresSlice.reducer;

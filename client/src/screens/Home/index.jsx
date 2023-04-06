@@ -29,8 +29,6 @@ const Home = () => {
     await clearSession({federated: true}, {localStorageOnly: false});
   };
 
-  console.log(JSON.parse('{"location":"Palomar", "points": "15"}'));
-
   return (
     <View>
       <Header>

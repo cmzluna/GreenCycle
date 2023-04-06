@@ -1,15 +1,54 @@
 import styled from 'styled-components/native';
 import {getScale} from '../../utils';
+import {Modal, Text, Portal} from 'react-native-paper';
 
 const {horizontalScale, verticalScale} = getScale();
 
 const Wrapper = styled.View`
+  display: flex;
   flex: 1;
   position: relative;
 `;
 
 const ScannerWrapper = styled.View`
   flex: 1;
+`;
+
+const ProfileCircle = styled.View`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -50px;
+  left: 70px;
+  background-color: #f1f2b1;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+`;
+
+const InnerProfileCircle = styled(ProfileCircle)`
+  border: 1px solid green;
+`;
+
+const Title = styled(Text)`
+  text-align: center;
+  color: #191c1a;
+  font-size: 22px;
+  text-transform: uppercase;
+`;
+
+const SubTitle = styled(Text)`
+  text-align: center;
+  color: #191c1a;
+  font-size: 16px;
+`;
+
+const PointsText = styled(Text)`
+  text-align: center;
+  color: #2e4a21;
+  font-size: 32px;
+  font-weight: bold;
 `;
 
 const Overlay = styled.View`
@@ -45,7 +84,7 @@ const BottomPadding = styled.View`
 `;
 
 const ViewFinder = styled.View`
-  background-color: black;
+  background-color: red;
   height: ${verticalScale(327)}px;
   width: ${horizontalScale(328)}px;
   opacity: 0.4;
@@ -59,4 +98,9 @@ export {
   MiddlePadding,
   BottomPadding,
   ViewFinder,
+  ProfileCircle,
+  Title,
+  SubTitle,
+  PointsText,
+  InnerProfileCircle,
 };
