@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import {promiseWrapper} from '../../utils';
 import BottomSheet from '../../components/BottomSheet';
+import {useFocusEffect} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   noPermissionsText: {

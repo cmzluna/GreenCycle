@@ -1,15 +1,22 @@
 import React, {useCallback, useMemo, useRef} from 'react';
-import {View, Text, StyleSheet, Button, Image} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import {
+  Container,
+  InnerContainer,
+  Title,
+  SubTitle,
+  Button,
+  OutlinedButton,
+} from './styles';
 import BaseButton from '../BaseButton';
-import {Container, InnerContainer, Title, SubTitle} from './styles';
 
-const BottomSheetComp = ({children}) => {
+const BottomSheetComp = ({hasPermission, children, ...props}) => {
   // ref
   const sheetRef = useRef(null);
 
   // variables
-  const snapPoints = useMemo(() => ['50%'], []);
+  const snapPoints = useMemo(() => ['65%'], []);
   // callbacks
 
   const handleClosePress = useCallback(() => {
@@ -32,6 +39,12 @@ const BottomSheetComp = ({children}) => {
               Si nos das acceso a tu ubicación actual, podemos recomendarte los
               Centros más cercanos.
             </SubTitle>
+            <Button title="Sí, dar acceso" onPress={() => handleClosePress()} />
+            <OutlinedButton
+              title="No, ver lista completa"
+              onPress={() => handleClosePress()}
+            />
+
             <BaseButton
               title="Quizás, mas tarde"
               onPress={() => handleClosePress()}
