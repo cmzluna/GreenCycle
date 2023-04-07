@@ -1,5 +1,5 @@
 import { auth } from 'express-oauth2-jwt-bearer';
-import { BASE_URL, API_IDENTIFIER } from '../config.js';
+import { BASE_URL, API_IDENTIFIER } from '../const.js';
 
 const checkJwt = auth({
     audience: API_IDENTIFIER,

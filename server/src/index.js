@@ -12,7 +12,6 @@ import usersRouter from './routes/users.router.js';
 import scoresRouter from './routes/scores.router.js';
 import viewsRouter from './routes/views.router.js';
 import bottlesRouter from './routes/bottles.router.js'
-import mapsRouter from './routes/maps.router.js'
 import donationsRouter from './routes/donations.router.js'
 import exchangesRouter from './routes/exchanges.router.js'
 import { PORT, URI_MONGO } from './const.js';
