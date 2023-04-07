@@ -88,3 +88,5 @@ export const getCurrentLevel = currentPoints => {
 
   return currentLevel;
 };
+
+export const IS_ANDROID = Platform.OS === 'android';

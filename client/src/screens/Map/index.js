@@ -1,69 +1,110 @@
-import React, {useRef} from 'react';
-import {StyleSheet, Image} from 'react-native';
-import {STADIA_API_KEY} from '@env';
+import React, {useEffect, useRef, useState} from 'react';
+import MapComponent from 'components/Map';
+import {IS_ANDROID} from 'utils';
 import MapLibreGL from '@maplibre/maplibre-react-native';
-import {View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  LogBox,
+  SafeAreaView,
+  Button,
+  PermissionsAndroid,
+} from 'react-native';
+import {promiseWrapper} from '../../utils';
+import BottomSheet from '../../components/BottomSheet';
 
 const styles = StyleSheet.create({
-  map: {
-    ...StyleSheet.absoluteFillObject,
-    flex: 1,
+  noPermissionsText: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
-
-const styleUrl = `https://tiles.stadiamaps.com/styles/alidade_smooth.json?api_key=${STADIA_API_KEY}`;
-console.log('styleUrl -> ', styleUrl);
 
 // node_modules FIXED  https://github.com/maplibre/maplibre-gl-native/issues/283
 const Map = () => {
   const mapRef = useRef(null);
+  const [permission, setPermission] = useState({
+    isFetchingAndroidPermission: IS_ANDROID,
+    isAndroidPermissionGranted: false,
+    activeExample: -1,
+  });
 
-  return (
-    <View style={{flex: 1}}>
-      <MapLibreGL.MapView
-        style={styles.map}
-        logoEnabled={false}
-        styleURL={styleUrl}>
-        <MapLibreGL.Camera
-          defaultSettings={{
-            centerCoordinate: [2.3210938, 48.8565913],
-            zoomLevel: 5,
-          }}
-        />
+  const requestLocationPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      );
 
-        <MapLibreGL.MarkerView
-          coordinate={[-0.124589, 51.500741]}
-          children={
-            <Image
-              source={{
-                uri: 'https://www.jawg.io/docs/images/icons/big-ben.png',
-              }}
-              style={{width: 25, height: 25}}
-            />
-          }
-          anchor={{x: 0, y: 0.5}}
-        />
-        <MapLibreGL.ShapeSource
-          id="marker-source"
-          shape={{
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [2.294694, 48.858093],
-            },
-          }}>
-          <MapLibreGL.SymbolLayer
-            id="marker-layer"
-            style={{
-              iconImage:
-                'https://www.jawg.io/docs/images/icons/eiffel-tower.png',
-              iconSize: 0.5,
-            }}
+      return setPermission({
+        isAndroidPermissionGranted: granted === 'granted',
+        isFetchingAndroidPermission: false,
+      });
+
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('You can use the location');
+        alert('You can use the location');
+      } else {
+        console.log('location permission denied');
+        alert('Location permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  const requestLocationPermissionHandler = async () => {
+    console.log('state en handler ? ', permission);
+    const [isGranted] = await promiseWrapper(
+      MapLibreGL.requestAndroidLocationPermissions(),
+    );
+
+    console.log('en requestLocationPermissionHandler isGranted? = ', isGranted);
+
+    return setPermission({
+      isAndroidPermissionGranted: isGranted,
+      isFetchingAndroidPermission: false,
+    });
+  };
+
+  useEffect(() => {
+    // if (IS_ANDROID) {
+    //   requestLocationPermissionHandler();
+    //   console.log('state ? ', permission);
+    // }
+    requestLocationPermission();
+    console.log('infinite loop?');
+  }, []);
+
+  if (IS_ANDROID && !permission.isAndroidPermissionGranted) {
+    if (permission.isFetchingAndroidPermission) {
+      console.log('here');
+      return null;
+    }
+    return (
+      <View>
+        <Text style={styles.noPermissionsText}>
+          You need to accept location permissions in order to use this example
+          applications
+          <Button
+            title="aceptar permisos"
+            onPress={requestLocationPermission}
           />
-        </MapLibreGL.ShapeSource>
-      </MapLibreGL.MapView>
-    </View>
-  );
+        </Text>
+      </View>
+    );
+  }
+  if (IS_ANDROID && permission.isAndroidPermissionGranted) {
+    console.log('permission?', permission.isAndroidPermissionGranted);
+    return (
+      <>
+        <BottomSheet>
+          <MapComponent />
+        </BottomSheet>
+      </>
+    );
+  }
 };
 
 export default Map;
