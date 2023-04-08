@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Pressable, Animated, Image, StyleSheet} from 'react-native';
 import {TextComp, Container} from './styles';
 
-const BaseButton = ({title, onPress, ...props}) => {
+const BaseButton = ({children, title, onPress, ...props}) => {
   const animated = new Animated.Value(1);
 
   const fadeIn = () => {
@@ -33,7 +33,7 @@ const BaseButton = ({title, onPress, ...props}) => {
             opacity: animated,
           },
         ]}>
-        <TextComp>{title}</TextComp>
+        {children ? children : <TextComp>{title}</TextComp>}
       </Animated.View>
     </Pressable>
   );

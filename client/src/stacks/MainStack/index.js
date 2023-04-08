@@ -5,7 +5,6 @@ import SwapIcon from '../../components/Icons/SwapIcon';
 import HomeIcon from '../../components/Icons/Home';
 import LocationIcon from '../../components/Icons/LocationIcon';
 import ScannerIcon from '../../components/Icons/Scanner';
-import Swap from '../../screens/Swap';
 import Home from '../../screens/Home';
 import Locations from '../../screens/Locations';
 import Map from '../../screens/Map';
@@ -14,6 +13,10 @@ import {View} from 'react-native';
 import {promiseWrapper} from '../../utils';
 import {BarCodeScanner} from 'expo-barcode-scanner/build/BarCodeScanner';
 import SwapConfirm from '../../screens/SwapConfirm';
+import MyDrawer from '../DrawerStack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import Swap from 'screens/Swap';
+import DrawerStack from '../DrawerStack';
 
 const requestPermission = async () => {
   const [data] = await promiseWrapper(BarCodeScanner.requestPermissionsAsync());
@@ -41,6 +44,7 @@ const SwapStack = () => {
         component={Swap}
         options={{
           tabBarLabel: 'home',
+          headerShown: false,
           tabBarIcon: ({color}) => <SwapIcon />,
         }}
       />
@@ -49,12 +53,32 @@ const SwapStack = () => {
         component={SwapConfirm}
         options={{
           tabBarLabel: 'home',
+          headerShown: false,
           tabBarIcon: ({color}) => <SwapIcon />,
         }}
       />
     </SwapStackNav.Navigator>
   );
 };
+
+// const DrawerStack = () => {
+//   const Drawer = createDrawerNavigator();
+
+//   return (
+//     <Drawer.Navigator
+//       screenOptions={{
+//         drawerStyle: {
+//           backgroundColor: 'white',
+//           zIndex: 100,
+//         },
+//         headerShown: false,
+//         drawerPosition: 'right',
+//       }}>
+//       <Drawer.Screen name="Map" component={Map} />
+//       <Drawer.Screen name="Swap" component={Swap} />
+//     </Drawer.Navigator>
+//   );
+// };
 
 const TabStack = () => {
   const Tab = createMaterialBottomTabNavigator();
@@ -92,6 +116,8 @@ const TabStack = () => {
             options={{
               tabBarLabel: 'home',
 
+              headerShown: true,
+
               tabBarIcon: ({color, focused}) => (
                 <SwapIcon color={focused ? 'black' : 'white'} />
               ),
@@ -115,10 +141,10 @@ const TabStack = () => {
             })}
           />
           <Tab.Screen
-            name="Location"
-            component={Map}
+            name="DrawerStack"
+            component={DrawerStack}
             options={{
-              tabBarLabel: 'location',
+              headerShown: true,
               tabBarIcon: ({color, focused}) => (
                 <LocationIcon color={focused ? 'black' : 'white'} />
               ),
@@ -149,7 +175,7 @@ const MainStack = () => {
         name="BottomTabStack"
         component={TabStack}
         options={{
-          headerShown: false,
+          headerShown: true,
         }}
       />
       <Stack.Screen

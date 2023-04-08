@@ -1,35 +1,19 @@
 import React, {useEffect, useRef, useState} from 'react';
 import MapComponent from 'components/Map';
 import {IS_ANDROID} from 'utils';
-import MapLibreGL from '@maplibre/maplibre-react-native';
-import {
-  StyleSheet,
-  Text,
-  View,
-  LogBox,
-  SafeAreaView,
-  Button,
-  PermissionsAndroid,
-} from 'react-native';
-import {promiseWrapper} from '../../utils';
-import BottomSheet from '../../components/BottomSheet';
-import {useFocusEffect} from '@react-navigation/native';
-
-const styles = StyleSheet.create({
-  noPermissionsText: {
-    fontSize: 18,
-    color: 'white',
-    fontWeight: 'bold',
-  },
-});
+import {PermissionsAndroid} from 'react-native';
+import BottomSheet from 'components/BottomSheet';
 
 // node_modules FIXED  https://github.com/maplibre/maplibre-gl-native/issues/283
-const Map = () => {
+
+const Map = ({navigation}) => {
   const mapRef = useRef(null);
   const [permission, setPermission] = useState({
     isFetchingAndroidPermission: IS_ANDROID,
     isAndroidPermissionGranted: false,
   });
+
+  console.log('navigation en screen map', navigation);
 
   const checkLocationPermission = async () => {
     try {
@@ -39,7 +23,7 @@ const Map = () => {
 
       console.log('isGranted', isGranted);
       return setPermission({
-        isAndroidPermissionGranted: isGranted === 'granted',
+        isAndroidPermissionGranted: isGranted,
         isFetchingAndroidPermission: false,
       });
     } catch (err) {
@@ -48,15 +32,13 @@ const Map = () => {
   };
 
   const requestLocationPermission = async () => {
-    console.log('en requestLocationPermission ***');
     try {
-      const granted = await PermissionsAndroid.request(
+      const permissionType = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       );
 
-      console.log('permission given ? ', granted);
       return setPermission({
-        isAndroidPermissionGranted: granted === 'granted',
+        isAndroidPermissionGranted: permissionType === 'granted',
         isFetchingAndroidPermission: false,
       });
     } catch (err) {
@@ -64,35 +46,16 @@ const Map = () => {
     }
   };
 
-  const requestLocationPermissionHandler = async () => {
-    console.log('state en handler ? ', permission);
-    const [isGranted] = await promiseWrapper(
-      MapLibreGL.requestAndroidLocationPermissions(),
-    );
-
-    console.log('en requestLocationPermissionHandler isGranted? = ', isGranted);
-
-    return setPermission({
-      isAndroidPermissionGranted: isGranted,
-      isFetchingAndroidPermission: false,
-    });
+  const handleToggleDrawer = () => {
+    navigation.toggleDrawer();
   };
 
   useEffect(() => {
-    // if (IS_ANDROID) {
-    //   requestLocationPermissionHandler();
-    //   console.log('state ? ', permission);
-    // }
-    // requestLocationPermission();
-    // console.log('infinite loop?');
     checkLocationPermission();
   }, []);
 
   if (IS_ANDROID && !permission.isAndroidPermissionGranted) {
-    if (permission.isFetchingAndroidPermission) {
-      console.log('here');
-      return null;
-    }
+    if (permission.isFetchingAndroidPermission) null;
 
     return (
       <BottomSheet requestLocationPermission={requestLocationPermission}>
@@ -100,10 +63,12 @@ const Map = () => {
       </BottomSheet>
     );
   }
-  if (IS_ANDROID && permission.isAndroidPermissionGranted) {
-    console.log('permission?', permission.isAndroidPermissionGranted);
-    return <MapComponent />;
-  }
+  if (IS_ANDROID && permission.isAndroidPermissionGranted)
+    return (
+      <>
+        <MapComponent handleToggleDrawer={handleToggleDrawer} />
+      </>
+    );
 };
 
 export default Map;

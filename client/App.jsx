@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import Main from './src/screens/Main';
 import {Auth0Provider} from 'react-native-auth0';
