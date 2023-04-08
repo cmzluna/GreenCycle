@@ -11,7 +11,7 @@ import {
 } from './styles';
 import BaseButton from '../BaseButton';
 
-const BottomSheetComp = ({hasPermission, children, ...props}) => {
+const BottomSheetComp = ({requestLocationPermission, children, ...props}) => {
   // ref
   const sheetRef = useRef(null);
 
@@ -21,6 +21,11 @@ const BottomSheetComp = ({hasPermission, children, ...props}) => {
 
   const handleClosePress = useCallback(() => {
     sheetRef.current?.close();
+  }, []);
+
+  const handleManagePermission = useCallback(() => {
+    sheetRef.current?.close();
+    requestLocationPermission();
   }, []);
 
   // render
@@ -39,10 +44,13 @@ const BottomSheetComp = ({hasPermission, children, ...props}) => {
               Si nos das acceso a tu ubicación actual, podemos recomendarte los
               Centros más cercanos.
             </SubTitle>
-            <Button title="Sí, dar acceso" onPress={() => handleClosePress()} />
+            <Button
+              title="Sí, dar acceso"
+              onPress={() => handleManagePermission()}
+            />
             <OutlinedButton
               title="No, ver lista completa"
-              onPress={() => handleClosePress()}
+              onPress={() => handleShowLocations()}
             />
 
             <BaseButton

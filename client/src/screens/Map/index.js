@@ -29,27 +29,36 @@ const Map = () => {
   const [permission, setPermission] = useState({
     isFetchingAndroidPermission: IS_ANDROID,
     isAndroidPermissionGranted: false,
-    activeExample: -1,
   });
 
+  const checkLocationPermission = async () => {
+    try {
+      const isGranted = await PermissionsAndroid.check(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      );
+
+      console.log('isGranted', isGranted);
+      return setPermission({
+        isAndroidPermissionGranted: isGranted === 'granted',
+        isFetchingAndroidPermission: false,
+      });
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
   const requestLocationPermission = async () => {
+    console.log('en requestLocationPermission ***');
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       );
 
+      console.log('permission given ? ', granted);
       return setPermission({
         isAndroidPermissionGranted: granted === 'granted',
         isFetchingAndroidPermission: false,
       });
-
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('You can use the location');
-        alert('You can use the location');
-      } else {
-        console.log('location permission denied');
-        alert('Location permission denied');
-      }
     } catch (err) {
       console.warn(err);
     }
@@ -74,8 +83,9 @@ const Map = () => {
     //   requestLocationPermissionHandler();
     //   console.log('state ? ', permission);
     // }
-    requestLocationPermission();
-    console.log('infinite loop?');
+    // requestLocationPermission();
+    // console.log('infinite loop?');
+    checkLocationPermission();
   }, []);
 
   if (IS_ANDROID && !permission.isAndroidPermissionGranted) {
@@ -83,28 +93,16 @@ const Map = () => {
       console.log('here');
       return null;
     }
+
     return (
-      <View>
-        <Text style={styles.noPermissionsText}>
-          You need to accept location permissions in order to use this example
-          applications
-          <Button
-            title="aceptar permisos"
-            onPress={requestLocationPermission}
-          />
-        </Text>
-      </View>
+      <BottomSheet requestLocationPermission={requestLocationPermission}>
+        <MapComponent />
+      </BottomSheet>
     );
   }
   if (IS_ANDROID && permission.isAndroidPermissionGranted) {
     console.log('permission?', permission.isAndroidPermissionGranted);
-    return (
-      <>
-        <BottomSheet>
-          <MapComponent />
-        </BottomSheet>
-      </>
-    );
+    return <MapComponent />;
   }
 };
 
