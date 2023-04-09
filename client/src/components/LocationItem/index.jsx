@@ -12,26 +12,29 @@ import {
 } from './styles';
 import {Image} from 'react-native';
 
-const LocationItem = ({item}) => {
+const LocationItem = ({data}) => {
+  const {id, name, address, city, openingTimes} = data;
+  console.log('en ITEM', data);
+  console.log(name);
   return (
     <Container>
-      <Title>Centro GreenCycle</Title>
+      <Title>{name}</Title>
       <InnerWrapper>
         <Image
           source={require('/assets/GreenMapMarker.png')}
           style={{width: 35, height: 50, marginRight: 15}}
         />
         <LocationWrapper>
-          <TextComp>Juramento, Mariano Acha &, Buenos Aires</TextComp>
+          <TextComp>{address}</TextComp>
           <BoldText>
-            Ubicado en: <TextComp>Plaza Zapiola</TextComp>
+            Ubicado en: <TextComp>{city}</TextComp>
           </BoldText>
         </LocationWrapper>
       </InnerWrapper>
       <OpeningsTimeWrapper>
         <Circle />
         <OpenText>Abierto</OpenText>
-        <TextComp>11:00 - 14:30</TextComp>
+        <TextComp>{openingTimes}</TextComp>
       </OpeningsTimeWrapper>
     </Container>
   );

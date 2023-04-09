@@ -5,10 +5,9 @@ const Container = styled.View`
   background-color: #fff;
   width: 100%;
   height: 194px;
-  border: 1px solid #6ac52d;
   padding-top: 11px;
   padding-left: 33px;
-  padding-right: 33px;
+  padding-right: 43px;
 `;
 
 const InnerWrapper = styled.View`

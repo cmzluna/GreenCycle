@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Map = ({handleToggleDrawer}) => {
+const Map = ({markers, handleToggleDrawer}) => {
   const [userLocation, setUserLocation] = useState({
     timestamp: 0,
     latitude: 0.0,
@@ -29,7 +29,6 @@ const Map = ({handleToggleDrawer}) => {
   const onChangeSearch = query => setSearchQuery(query);
 
   const onUserLocationUpdate = location => {
-    console.log('location ===> ', location);
     setUserLocation({
       timestamp: location.timestamp,
       latitude: location.coords.latitude,
@@ -73,40 +72,25 @@ const Map = ({handleToggleDrawer}) => {
           />
           <MapLibreGL.Camera
             defaultSettings={{
-              zoomLevel: 16,
+              zoomLevel: 10,
             }}
             followUserMode={'normal'}
             followUserLocation
           />
 
-          <MapLibreGL.MarkerView
-            coordinate={[-0.124589, 51.500741]}
-            children={
-              <Image
-                source={require('/assets/GreenMapMarker.png')}
-                style={{width: 35, height: 55}}
+          {markers &&
+            markers.map(marker => (
+              <MapLibreGL.MarkerView
+                coordinate={marker.coordinates}
+                children={
+                  <Image
+                    source={require('/assets/GreenMapMarker.png')}
+                    style={{width: 25, height: 35}}
+                  />
+                }
+                anchor={{x: 0, y: 0.5}}
               />
-            }
-            anchor={{x: 0, y: 0.5}}
-          />
-          <MapLibreGL.ShapeSource
-            id="marker-source"
-            shape={{
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: [2.294694, 48.858093],
-              },
-            }}>
-            <MapLibreGL.SymbolLayer
-              id="marker-layer"
-              style={{
-                iconImage:
-                  'https://www.jawg.io/docs/images/icons/eiffel-tower.png',
-                iconSize: 0.5,
-              }}
-            />
-          </MapLibreGL.ShapeSource>
+            ))}
         </MapLibreGL.MapView>
       </Container>
     </>

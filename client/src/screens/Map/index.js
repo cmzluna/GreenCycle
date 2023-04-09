@@ -3,6 +3,7 @@ import MapComponent from 'components/Map';
 import {IS_ANDROID} from 'utils';
 import {PermissionsAndroid} from 'react-native';
 import BottomSheet from 'components/BottomSheet';
+import {useSelector} from 'react-redux';
 
 // node_modules FIXED  https://github.com/maplibre/maplibre-gl-native/issues/283
 
@@ -12,8 +13,7 @@ const Map = ({navigation}) => {
     isFetchingAndroidPermission: IS_ANDROID,
     isAndroidPermissionGranted: false,
   });
-
-  console.log('navigation en screen map', navigation);
+  const locations = useSelector(state => state.locations.list);
 
   const checkLocationPermission = async () => {
     try {
@@ -66,7 +66,10 @@ const Map = ({navigation}) => {
   if (IS_ANDROID && permission.isAndroidPermissionGranted)
     return (
       <>
-        <MapComponent handleToggleDrawer={handleToggleDrawer} />
+        <MapComponent
+          markers={locations}
+          handleToggleDrawer={handleToggleDrawer}
+        />
       </>
     );
 };
