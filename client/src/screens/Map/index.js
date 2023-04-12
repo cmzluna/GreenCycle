@@ -1,19 +1,35 @@
 import React, {useEffect, useRef, useState} from 'react';
 import MapComponent from 'components/Map';
 import {IS_ANDROID} from 'utils';
-import {PermissionsAndroid} from 'react-native';
+import {PermissionsAndroid, View, Text, Button} from 'react-native';
 import BottomSheet from 'components/BottomSheet';
 import {useSelector} from 'react-redux';
+import LocationsInfoSheet from '../../components/LocationsInfoSheet';
+import {validateObject} from '../../utils';
 
 // node_modules FIXED  https://github.com/maplibre/maplibre-gl-native/issues/283
 
 const Map = ({navigation}) => {
-  const mapRef = useRef(null);
+  const sheetRef = useRef(null);
   const [permission, setPermission] = useState({
     isFetchingAndroidPermission: IS_ANDROID,
     isAndroidPermissionGranted: false,
   });
-  const locations = useSelector(state => state.locations.list);
+  const {list: locations, selectedLocation} = useSelector(
+    state => state.locations,
+  );
+
+  const selectedLocationExist =
+    !!selectedLocation &&
+    validateObject(selectedLocation) &&
+    !!Object.keys(selectedLocation).length;
+
+  console.log('\n\n\n\n ', selectedLocationExist);
+
+  const handleSnap = i => {
+    console.log('i en handlesnap', i);
+    sheetRef.current?.snapToIndex(i);
+  };
 
   const checkLocationPermission = async () => {
     try {
@@ -51,27 +67,56 @@ const Map = ({navigation}) => {
   };
 
   useEffect(() => {
-    checkLocationPermission();
+    requestLocationPermission();
   }, []);
 
-  if (IS_ANDROID && !permission.isAndroidPermissionGranted) {
-    if (permission.isFetchingAndroidPermission) null;
+  useEffect(() => {
+    if (selectedLocation) {
+      console.log('selectedLocation = ', selectedLocation);
+      handleSnap(2);
+    } else {
+      handleSnap(-1);
+    }
+  }, [selectedLocation]);
 
-    return (
-      <BottomSheet requestLocationPermission={requestLocationPermission}>
-        <MapComponent />
-      </BottomSheet>
-    );
-  }
-  if (IS_ANDROID && permission.isAndroidPermissionGranted)
+  if (IS_ANDROID && !permission.isAndroidPermissionGranted) {
+    if (permission.isFetchingAndroidPermission) {
+      console.log('2');
+      null;
+    }
+    console.log('1');
     return (
       <>
         <MapComponent
           markers={locations}
           handleToggleDrawer={handleToggleDrawer}
         />
+        <BottomSheet requestLocationPermission={requestLocationPermission}>
+          <LocationsInfoSheet selectedLocation={selectedLocation} />
+        </BottomSheet>
       </>
     );
+  }
+  if (IS_ANDROID && permission.isAndroidPermissionGranted) {
+    console.log('selectedLocationExist === ', selectedLocationExist);
+    return (
+      <>
+        <MapComponent
+          markers={locations}
+          handleToggleDrawer={handleToggleDrawer}
+        />
+
+        <BottomSheet
+          ref={sheetRef}
+          requestLocationPermission={requestLocationPermission}>
+          <View>
+            <Text>tiene permiso!</Text>
+          </View>
+          <LocationsInfoSheet selectedLocation={selectedLocation} />
+        </BottomSheet>
+      </>
+    );
+  }
 };
 
 export default Map;

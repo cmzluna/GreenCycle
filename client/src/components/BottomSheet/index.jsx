@@ -1,68 +1,55 @@
-import React, {useCallback, useMemo, useRef} from 'react';
+import React, {
+  useCallback,
+  useMemo,
+  useRef,
+  useEffect,
+  useState,
+  forwardRef,
+} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
-import {
-  Container,
-  InnerContainer,
-  Title,
-  SubTitle,
-  Button,
-  OutlinedButton,
-} from './styles';
-import BaseButton from '../BaseButton';
+import {Container} from './styles';
 
-const BottomSheetComp = ({requestLocationPermission, children, ...props}) => {
+const BottomSheetComp = forwardRef(function BottomSheetComp(props, ref) {
   // ref
-  const sheetRef = useRef(null);
+  // const sheetRef = useRef(null);
+
+  const {requestLocationPermission, children, ...otherProps} = props;
 
   // variables
-  const snapPoints = useMemo(() => ['65%'], []);
+  const snapPoints = useMemo(() => ['15%', '30%', '65%'], []);
   // callbacks
 
   const handleClosePress = useCallback(() => {
-    sheetRef.current?.close();
+    ref.current?.close();
+  }, []);
+
+  const handleSnap = useCallback(i => {
+    // console.log('snapToIndex en handlesnap ', i);
+    //ref.current?.snapToIndex(i);
+  }, []);
+
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSssheetChanges', index);
   }, []);
 
   const handleManagePermission = useCallback(() => {
-    sheetRef.current?.close();
+    //  ref.current?.close();
     requestLocationPermission();
   }, []);
 
-  // render
   return (
-    <Container>
-      {children}
-      <BottomSheet ref={sheetRef} snapPoints={snapPoints}>
-        <BottomSheetView>
-          <InnerContainer>
-            <Image
-              source={require('/assets/GreenMapMarker.png')}
-              style={{width: 35, height: 50}}
-            />
-            <Title>Para una mejor experiencia</Title>
-            <SubTitle>
-              Si nos das acceso a tu ubicación actual, podemos recomendarte los
-              Centros más cercanos.
-            </SubTitle>
-            <Button
-              title="Sí, dar acceso"
-              onPress={() => handleManagePermission()}
-            />
-            <OutlinedButton
-              title="No, ver lista completa"
-              onPress={() => handleShowLocations()}
-            />
-
-            <BaseButton
-              title="Quizás, mas tarde"
-              onPress={() => handleClosePress()}
-            />
-          </InnerContainer>
-        </BottomSheetView>
-      </BottomSheet>
-    </Container>
+    <BottomSheet
+      enablePanDownToClose
+      handleClosePress={handleClosePress}
+      onChange={handleSheetChanges}
+      {...otherProps}
+      ref={ref}
+      snapPoints={snapPoints}>
+      <BottomSheetView>{children}</BottomSheetView>
+    </BottomSheet>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

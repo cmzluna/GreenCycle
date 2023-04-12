@@ -14,8 +14,7 @@ import {Image} from 'react-native';
 
 const LocationItem = ({data}) => {
   const {id, name, address, city, openingTimes} = data;
-  console.log('en ITEM', data);
-  console.log(name);
+
   return (
     <Container>
       <Title>{name}</Title>

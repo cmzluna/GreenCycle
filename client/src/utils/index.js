@@ -90,3 +90,6 @@ export const getCurrentLevel = currentPoints => {
 };
 
 export const IS_ANDROID = Platform.OS === 'android';
+
+export const DEFAULT_CENTER_COORDINATE = [-77.036086, 38.910233];
+// Buenos Aires: [-58.5733822,-34.6157437]

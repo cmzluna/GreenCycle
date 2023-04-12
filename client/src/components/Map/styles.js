@@ -5,7 +5,7 @@ import Drawer from '../../stacks/DrawerStack';
 
 const Container = styled.View`
   flex: 1;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   bottom: 0;

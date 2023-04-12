@@ -4,6 +4,10 @@ import {StyleSheet, Image} from 'react-native';
 import MapLibreGL from '@maplibre/maplibre-react-native';
 import {STADIA_API_KEY} from '@env';
 import Drawer from '../../stacks/DrawerStack';
+import {DEFAULT_CENTER_COORDINATE} from 'utils';
+import exampleIcon from '/assets/GreenMapMarker.png';
+import {useDispatch} from 'react-redux';
+import {selectLocation} from '../../store/slices/locations';
 
 const styleUrl = `https://tiles.stadiamaps.com/styles/osm_bright.json?api_key=${STADIA_API_KEY}`;
 
@@ -11,6 +15,12 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
     flex: 1,
+  },
+  mapPinLayer: {
+    iconAllowOverlap: true,
+    iconAnchor: 'bottom',
+    iconSize: 1.0,
+    iconImage: exampleIcon,
   },
 });
 
@@ -25,6 +35,8 @@ const Map = ({markers, handleToggleDrawer}) => {
     speed: 0.0,
   });
   const [searchQuery, setSearchQuery] = React.useState('');
+  const [selectedFeature, setSelectedFeature] = React.useState(null);
+  const dispatch = useDispatch();
 
   const onChangeSearch = query => setSearchQuery(query);
 
@@ -38,6 +50,54 @@ const Map = ({markers, handleToggleDrawer}) => {
       accuracy: location.coords.accuracy,
       speed: location.coords.speed,
     });
+  };
+
+  // if facing TypeError: property is not configurable:
+  // https://github.com/react-navigation/react-navigation/issues/11289
+
+  const locationAvailable = !!userLocation.longitude && !!userLocation.latitude;
+
+  const mappedFeatures = markers?.map(marker => {
+    const {id, name, address, city, coordinates, openingTimes} = marker;
+
+    return {
+      type: 'Feature',
+      id,
+      properties: {name, address, city, openingTimes},
+      geometry: {type: 'Point', coordinates},
+    };
+  });
+
+  const featureCollection = {
+    type: 'FeatureCollection',
+    features: mappedFeatures,
+  };
+
+  const onPinPress = e => {
+    const feature = e?.features[0];
+
+    const {
+      id,
+      geometry: {coordinates},
+      properties: {name, address, city, openingTimes},
+    } = feature;
+
+    // dispatchear
+    dispatch(
+      selectLocation({
+        id,
+        coordinates,
+        name,
+        address,
+        city,
+        openingTimes,
+      }),
+    );
+
+    setSelectedFeature(undefined);
+    return;
+
+    setSelectedFeature(feature);
   };
 
   return (
@@ -70,27 +130,30 @@ const Map = ({markers, handleToggleDrawer}) => {
             visible={true}
             onUpdate={onUserLocationUpdate}
           />
+
           <MapLibreGL.Camera
-            defaultSettings={{
-              zoomLevel: 10,
-            }}
-            followUserMode={'normal'}
-            followUserLocation
+            followUserMode={locationAvailable ? 'normal' : 'none'}
+            followUserLocation={locationAvailable ? true : false}
+            zoomLevel={12}
+            // defaultSettings={defaultCamera}      try
+            centerCoordinate={
+              locationAvailable
+                ? [userLocation.longitude, userLocation.latitude]
+                : [-58.5733822, -34.6157437]
+            }
           />
 
-          {markers &&
-            markers.map(marker => (
-              <MapLibreGL.MarkerView
-                coordinate={marker.coordinates}
-                children={
-                  <Image
-                    source={require('/assets/GreenMapMarker.png')}
-                    style={{width: 25, height: 35}}
-                  />
-                }
-                anchor={{x: 0, y: 0.5}}
+          {!!featureCollection.features.length && (
+            <MapLibreGL.ShapeSource
+              id="mapPinsSource"
+              shape={featureCollection}
+              onPress={onPinPress}>
+              <MapLibreGL.SymbolLayer
+                id="mapPinsLayer"
+                style={styles.mapPinLayer}
               />
-            ))}
+            </MapLibreGL.ShapeSource>
+          )}
         </MapLibreGL.MapView>
       </Container>
     </>

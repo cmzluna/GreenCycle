@@ -8,7 +8,6 @@ const initialState = {
       address: 'Bradley, Ciudad Jardin',
       city: 'Palomar',
       coordinates: [-58.6018128, -34.58891],
-
       openingTimes: '11:00 - 14:30',
     },
     {
@@ -36,13 +35,7 @@ const initialState = {
       openingTimes: '11:00 - 14:30',
     },
   ],
-  selectedLocation: {
-    id: '1',
-    name: 'Centro Zapiola',
-    address: 'Juramento, Mariano Acha &, Buenos Aires',
-    city: 'Belgrano',
-    openingTimes: '11:00 - 14:30',
-  },
+  selectedLocation: {},
 };
 
 export const locationSlice = createSlice({
@@ -50,9 +43,13 @@ export const locationSlice = createSlice({
   initialState,
   reducers: {
     resetLocations: () => initialState,
+    selectLocation: (state, {payload}) => ({
+      ...state,
+      selectedLocation: payload,
+    }),
   },
 });
 
-export const {resetLocations} = locationSlice.actions;
+export const {resetLocations, selectLocation} = locationSlice.actions;
 
 export default locationSlice.reducer;
