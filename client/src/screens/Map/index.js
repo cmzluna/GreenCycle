@@ -24,8 +24,6 @@ const Map = ({navigation}) => {
     validateObject(selectedLocation) &&
     !!Object.keys(selectedLocation).length;
 
-  console.log('\n\n\n\n ', selectedLocationExist);
-
   const handleSnap = i => {
     console.log('i en handlesnap', i);
     sheetRef.current?.snapToIndex(i);
@@ -73,7 +71,7 @@ const Map = ({navigation}) => {
   useEffect(() => {
     if (selectedLocation) {
       console.log('selectedLocation = ', selectedLocation);
-      handleSnap(2);
+      handleSnap(1);
     } else {
       handleSnap(-1);
     }
@@ -91,7 +89,9 @@ const Map = ({navigation}) => {
           markers={locations}
           handleToggleDrawer={handleToggleDrawer}
         />
-        <BottomSheet requestLocationPermission={requestLocationPermission}>
+        <BottomSheet
+          ref={sheetRef}
+          requestLocationPermission={requestLocationPermission}>
           <LocationsInfoSheet selectedLocation={selectedLocation} />
         </BottomSheet>
       </>

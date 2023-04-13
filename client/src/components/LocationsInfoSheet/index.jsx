@@ -2,22 +2,14 @@ import React from 'react';
 import {InnerContainer, Title, SubTitle} from './styles';
 import {Image} from 'react-native';
 import BaseButton from '../BaseButton';
+import LocationItem from '../LocationItem';
 
-const LocationsInfoSheet = ({selectedLocation}) => {
+const LocationsInfoSheet = ({selectedLocation, ...props}) => {
   const {id, name, address, city, coordinates, openingTimes} = selectedLocation;
 
   return (
     <InnerContainer>
-      <Image
-        source={require('/assets/GreenMapMarker.png')}
-        style={{width: 35, height: 50}}
-      />
-      <Title>{name}</Title>
-      <SubTitle>{address}</SubTitle>
-
-      <BaseButton
-        title="Quizás, mas tarde"
-        onPress={() => console.log('hola')}></BaseButton>
+      <LocationItem data={selectedLocation} {...props} />
     </InnerContainer>
   );
 };
