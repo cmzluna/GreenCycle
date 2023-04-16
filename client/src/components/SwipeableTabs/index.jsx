@@ -6,6 +6,7 @@ import {Container} from './styles';
 const renderTabBar = props => (
   <TabBar
     {...props}
+    scrollEnabled
     indicatorStyle={{backgroundColor: 'black', margin: 14}}
     style={{backgroundColor: 'white'}}
     renderLabel={({route, focused, color}) => (

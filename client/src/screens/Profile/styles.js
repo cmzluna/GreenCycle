@@ -2,16 +2,25 @@ import styled from 'styled-components/native';
 
 const Container = styled.View`
   display: flex;
-  background-color: #dbe4c6;
+  flex: 1;
+  background-color: #fff;
+  padding: 16px;
   height: 100%;
-  justify-content: center;
   align-items: center;
 `;
 
-const Title = styled.Text`
+const UserInfoHeader = styled.View`
   color: #000;
   color: #94af9f;
   font-size: 32px;
 `;
 
-export {Container, Title};
+const TabLists = styled.View`
+  display: flex;
+  flex: 1;
+  width: 100%;
+  background-color: #fff;
+  font-size: 32px;
+`;
+
+export {Container, UserInfoHeader, TabLists};
