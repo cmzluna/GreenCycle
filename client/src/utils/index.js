@@ -1,6 +1,14 @@
 import {Dimensions} from 'react-native';
 import Rosa from '/assets/levelsIcons/Rosa.png';
 import Pasto from '/assets/levelsIcons/Pasto.png';
+import Pino from '/assets/levelsIcons/Pino.png';
+import Girasol from '/assets/levelsIcons/Girasol.png';
+import Cactus from '/assets/levelsIcons/Cactus.png';
+import Arbol from '/assets/levelsIcons/Arbol.png';
+import Margarita from '/assets/levelsIcons/Margarita.png';
+import Maceta from '/assets/levelsIcons/Maceta.png';
+import Brote from '/assets/levelsIcons/Brote.png';
+import Semilla from '/assets/levelsIcons/Semilla.png';
 
 export const getScale = () => {
   const {width, height} = Dimensions.get('screen');
@@ -61,49 +69,49 @@ export const steps = [
     level: 8,
     label: 'Pino',
     pointsNeeded: 80,
-    icon: require('../../assets/levelsIcons/Pino.png'),
+    icon: Pino,
   },
   {
     level: 7,
     label: 'Girasol',
     pointsNeeded: 70,
-    icon: require('../../assets/levelsIcons/Girasol.png'),
+    icon: Girasol,
   },
   {
     level: 6,
     label: 'Cáctus',
     pointsNeeded: 60,
-    icon: require('../../assets/levelsIcons/Cactus.png'),
+    icon: Cactus,
   },
   {
     level: 5,
     label: 'Árbol',
     pointsNeeded: 50,
-    icon: require('../../assets/levelsIcons/Arbol.png'),
+    icon: Arbol,
   },
   {
     level: 4,
     label: 'Margarita',
     pointsNeeded: 40,
-    icon: require('../../assets/levelsIcons/Margarita.png'),
+    icon: Margarita,
   },
   {
     level: 3,
     label: 'Maceta',
     pointsNeeded: 30,
-    icon: require('../../assets/levelsIcons/Maceta.png'),
+    icon: Maceta,
   },
   {
     level: 2,
     label: 'Brote',
     pointsNeeded: 20,
-    icon: require('../../assets/levelsIcons/Brote.png'),
+    icon: Brote,
   },
   {
     level: 1,
     label: 'Semilla',
     pointsNeeded: 10,
-    icon: require('../../assets/levelsIcons/Semilla.png'),
+    icon: Semilla,
   },
   {
     level: 0,
