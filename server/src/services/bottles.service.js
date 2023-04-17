@@ -1,12 +1,8 @@
-import { bottlesModel } from "../models/bottles.model.js";
 import { scoresModel } from "../models/scores.model.js";
-import { levelsModel } from "../models/levels.model.js";
+
 
 export const postBottle= async (req,res) =>{
-    const {userId} = req.body; 
-    const newBottle =  await bottlesModel.create({userId,
-        pointsByBottle: 5, weightOfBottle: 9}); 
-
+    const {userId} = req.body;  
     const score = await scoresModel.findOne({userId});
 
     if(!score){

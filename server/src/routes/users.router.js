@@ -12,6 +12,9 @@ router.post('/register', createUser);
 
 router.post('/login', loginUser);
 
+router.get('/api/private', (req, res) => {
+    res.json({ message: `Hello ${req.auth.payload.sub}!` });
+  })
 
 router.get('/allUsers', getAllUsers);
 

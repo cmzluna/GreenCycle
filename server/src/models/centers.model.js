@@ -7,8 +7,14 @@ const centersSchema = new Schema({
     address: {
         type: String
     },
-    latitudes: {
+    city:{
+        type: String,
+    },
+    coordinates: {
         type: Array
+    },
+    openingTimes:{
+        type: String
     }
 })
 
