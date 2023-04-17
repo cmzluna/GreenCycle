@@ -1,26 +1,38 @@
 import React from 'react';
-import {Button, StyleSheet, Text} from 'react-native';
 import {
-  Header,
-  TitleHome,
-  View,
-  ProfileBtn,
-  NavbarHome,
-  DotsBtn,
-  BoxHomeTag,
-  BoxUserPoints,
-  CounterLevel,
-  MapDisplay,
+  Container,
+  PointsTitle,
+  PointsNumber,
+  HeaderSection,
+  ProgressSection,
+  PointsWrapper,
+  WelcomeWrapper,
+  WelcomeTitle,
+  WelcomeText,
+  InnerWrapper,
+  RowWrapper,
+  ProgressBarWrapper,
+  ProgressBarText,
+  Title,
 } from './styles';
 import {useAuth0} from 'react-native-auth0';
 import {useDispatch, useSelector} from 'react-redux';
 import {signOut} from '../../store/slices/user';
-import ScoresInfo from '../../components/ScoresInfo';
-import {getCurrentLevel} from '../../utils';
+import Rule from '../../components/Icons/Rule';
+import {Image, ScrollView} from 'react-native';
+import {getCurrentLevel} from 'utils';
+import * as Progress from 'react-native-progress';
+import Bottle from '../../components/Icons/Bottle';
+import NewsList from '../../components/NewsList';
 
 const Home = () => {
-  const scores = useSelector(state => state.scores);
+  const state = useSelector(state => state);
+  const {news: NewsData, scores, user: userState} = state;
+
   const {currentPoints} = scores;
+  const {name} = userState;
+  const {icon, level} = getCurrentLevel(currentPoints);
+
   const {authorize, clearSession, user, getCredentials, error} = useAuth0();
   const dispatch = useDispatch();
 
@@ -30,128 +42,81 @@ const Home = () => {
   };
 
   return (
-    <View>
-      <Header>
-        <NavbarHome>
-          <ProfileBtn>
-            <Text>T</Text>
-          </ProfileBtn>
-          <TitleHome> Green Cycle </TitleHome>
-          <DotsBtn>
-            <Text style={styles.fontText}>. . .</Text>
-          </DotsBtn>
-        </NavbarHome>
+    <Container>
+      <ScrollView>
+        <HeaderSection
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}
+          colors={['#D4FC79', '#96E6A1']}>
+          <WelcomeWrapper>
+            <WelcomeTitle>¡Hola, {name}!</WelcomeTitle>
+            <WelcomeText>
+              Mantén tus puntos en aumento visitando la estación de reciclaje
+              con frecuencia.
+            </WelcomeText>
+          </WelcomeWrapper>
 
-        <BoxHomeTag style={userStyles.items}>
-          <View style={textUser.container}>
-            <Text style={textUser.welcome}>Hola Usuario</Text>
-          </View>
+          <PointsWrapper>
+            <Bottle />
+            <PointsNumber>{currentPoints}</PointsNumber>
+            <PointsTitle>Pts.</PointsTitle>
+          </PointsWrapper>
+        </HeaderSection>
 
-          <ScoresInfo
-            currentPoints={currentPoints}
-            currentLevel={getCurrentLevel(currentPoints).label}
-            icon={getCurrentLevel(currentPoints).icon}
-          />
-        </BoxHomeTag>
-        <BoxHomeTag>
-          <Text style={dataStyles.fontData}>Estadisticas</Text>
-          <CounterLevel>
-            <View style={dataStyles.boxValues}>
-              <Text style={dataStyles.fontData}>Plasticos</Text>
-              <View style={dataStyles.circleBox}>
-                <Text>15grs</Text>
-              </View>
-            </View>
-          </CounterLevel>
-        </BoxHomeTag>
-        <BoxHomeTag>
-          <Text style={dataStyles.fontData}>Centros de reciclaje</Text>
-          <MapDisplay></MapDisplay>
-        </BoxHomeTag>
-      </Header>
-    </View>
+        <Title>Tu progreso</Title>
+
+        <ProgressSection>
+          <InnerWrapper>
+            <RowWrapper>
+              <ProgressBarWrapper>
+                <Progress.Bar
+                  progress={0.3}
+                  width={170}
+                  height={70}
+                  color="#B8D271"
+                  borderColor="#2E4A21"
+                  borderWidth={1}
+                  borderRadius={10}
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    transform: [
+                      {
+                        translateX: -55,
+                      },
+                      {
+                        translateY: -50,
+                      },
+                      {rotate: '-90deg'},
+                    ],
+                  }}
+                />
+                <ProgressBarText>18gr</ProgressBarText>
+              </ProgressBarWrapper>
+            </RowWrapper>
+            <Title>Plástico</Title>
+          </InnerWrapper>
+
+          <InnerWrapper>
+            <RowWrapper>
+              <Image
+                source={icon}
+                style={{
+                  height: 60,
+                  width: 60,
+                }}
+              />
+              <Rule />
+            </RowWrapper>
+            <Title>Crecimiento</Title>
+          </InnerWrapper>
+        </ProgressSection>
+
+        <NewsList data={NewsData} horizontal />
+      </ScrollView>
+    </Container>
   );
 };
-const styles = StyleSheet.create({
-  fontText: {
-    fontSize: 20,
-    fontWeight: 800,
-    width: '80%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-});
-const userStyles = StyleSheet.create({
-  items: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-});
-const textUser = StyleSheet.create({
-  welcome: {
-    fontSize: 20,
-    fontWeight: 700,
-    height: '40%',
-    width: '100%',
-    color: 'black',
-  },
-  container: {
-    height: '40%',
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-const pointsText = StyleSheet.create({
-  boxContainer: {
-    width: '100%',
-    height: '50%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  boxContainerPoints: {
-    width: '100%',
-    height: '50%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#6AC52D',
-    borderRadius: 10,
-  },
-  fontPoints: {
-    fontSize: 28,
-    color: 'black',
-    fontWeight: 600,
-  },
-  fontTextPoints: {
-    fontSize: 16,
-    color: 'black',
-    fontWeight: 600,
-  },
-});
-const dataStyles = StyleSheet.create({
-  fontData: {
-    fontWeight: 600,
-    fontSize: 16,
-    color: '#2E4A21',
-  },
-  boxValues: {
-    width: '35%',
-    height: '80%',
-    display: 'flex',
-    justifyContent: 'space-around',
-  },
-  circleBox: {
-    borderWidth: 8,
-    borderColor: 'blue',
-    height: 80,
-    width: 80,
-    borderRadius: 80,
-  },
-});
+
 export default Home;
