@@ -2,13 +2,8 @@ import { Router } from "express";
 
 const router = Router()
 
-router.get('/makeDonation')
+router.get('/')
  
-
-
-
-
-
 
 
 
