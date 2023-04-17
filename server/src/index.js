@@ -5,15 +5,18 @@ import mongoStore from 'connect-mongo';
 import handlebars from 'express-handlebars'; 
 import morgan from 'morgan';
 import cors from 'cors';
+import { auth } from 'express-oauth2-jwt-bearer';
 // CUSTOM IMPORTS
 import {__dirname} from "./utils.js" ;
 import './dbConfig.js';
+import { PORT, URI_MONGO,ISSUER_BASE_URL,API_IDENTIFIER} from './const.js';
 import usersRouter from './routes/users.router.js';
 import scoresRouter from './routes/scores.router.js';
 import viewsRouter from './routes/views.router.js';
 import bottlesRouter from './routes/bottles.router.js'
-import mapsRouter from './routes/maps.router.js'
-import { PORT, URI_MONGO } from './const.js';
+import donationsRouter from './routes/donations.router.js'
+import exchangesRouter from './routes/exchanges.router.js'
+
 
 const app = express();
 
@@ -26,19 +29,16 @@ app.use(express.urlencoded({extended: true,}));
 app.use(express.static(__dirname+"/public"));
 app.use(morgan('dev'));
 app.use(cors());
-// app.use(checkJwt)
-/*
-estoy nos servira para aceptar las llamadas del front, debemos esperar a que este lista la URL del front para hacerlo funcional
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', FRONT_DOMINIO); // update to match the domain you will make the request from
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-  next();
-});
 
-*/
+app.use(
+  auth({
+    issuerBaseURL: ISSUER_BASE_URL,
+    audience: API_IDENTIFIER,
+  }),
+);
+
+
 // HANDLEBARS SET UP
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + '/views');
@@ -63,11 +63,9 @@ app.use(
 app.use('/GreenCycle/views', viewsRouter)  
 app.use('/GreenCycle/users', usersRouter)  
 app.use('/GreenCycle/scores', scoresRouter)
-app.use('/GreenCycle/bottles', bottlesRouter)
-app.use('/GreenCycle/views', viewsRouter);  
-app.use('/GreenCycle/users', usersRouter);  
-app.use('/GreenCycle/scores', scoresRouter);
-app.use('/GreenCycle/bottles', bottlesRouter);
+app.use('/GreenCycle/bottles', bottlesRouter) 
+app.use('/GreenCycle/donations', donationsRouter)
+app.use('/GreenCycle/exchanges', exchangesRouter)
 
 
 // ROOT PATH 
@@ -76,4 +74,6 @@ app.get('/',(req,res)=>{
 })
 
 app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')} => http://localhost:4200`));
+
+
 
