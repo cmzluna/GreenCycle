@@ -2,65 +2,44 @@ import styled from 'styled-components/native';
 
 const Container = styled.View`
   display: flex;
+  flex: 1;
   background-color: #fff;
   width: 100%;
   justify-content: center;
   align-items: center;
-  border: 1px solid #7dc35d;
+
   border-radius: 8px;
 `;
 
-const UserInfo = styled.View`
-  display: flex;
+const InnerWrapper = styled.View`
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 72px;
-  color: #000;
-  background-color: #6ac52d;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  padding-bottom: 30px;
+  gap: 15px;
 `;
-
-const GrowthIndicator = styled.View`
-  width: 100%;
-  height: 72px;
-  display: flex;
-  flex-direction: row;
+const Box = styled.View`
+  width: 144px;
+  height: 96px;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  background-color: #fff;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  background: #f1f2b1;
+  border-radius: 8px;
 `;
-
 const PointsTitle = styled.Text`
-  margin-left: 16px;
-  color: #fff;
+  color: #2e4a21;
   font-size: 22px;
 `;
 
-const GrowthTitle = styled.Text`
-  color: #259e73;
-  margin-left: 16px;
-  font-size: 22px;
+const BoxLabel = styled.Text`
+  color: #2e4a21;
+  font-size: 16px;
+  text-transform: uppercase;
 `;
-
 const PointsNumber = styled.Text`
-  display: flex;
-  color: #fff;
-  font-size: 32px;
-  width: 158px;
-  text-align: center;
+  color: #2e4a21;
+  font-size: 48px;
   font-weight: bold;
 `;
 
-export {
-  Container,
-  UserInfo,
-  PointsTitle,
-  PointsNumber,
-  GrowthIndicator,
-  GrowthTitle,
-};
+export {Container, Box, BoxLabel, InnerWrapper, PointsTitle, PointsNumber};

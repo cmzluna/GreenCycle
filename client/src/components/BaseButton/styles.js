@@ -7,7 +7,8 @@ const Container = styled.View`
 `;
 
 const TextComp = styled.Text`
-  color: #2e4a21;
+  color: ${({color}) => color || '#2e4a21'};
+
   font-size: 17px;
   font-weight: bold;
 `;

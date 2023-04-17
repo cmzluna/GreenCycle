@@ -33,7 +33,7 @@ const BaseButton = ({children, title, onPress, ...props}) => {
             opacity: animated,
           },
         ]}>
-        {children ? children : <TextComp>{title}</TextComp>}
+        {children ? children : <TextComp color={props.color}>{title}</TextComp>}
       </Animated.View>
     </Pressable>
   );

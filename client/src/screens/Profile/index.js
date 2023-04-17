@@ -6,25 +6,27 @@ import UserInfoForm from './components/UserInfoForm';
 import UserPoints from './components/UserPoints';
 import MyGrowth from './components/MyGrowth';
 import UserInfoHeader from './components/UserInfoHeader';
+import Movements from './components/Movements';
 
 const Profile = () => {
-  const scores = useSelector(state => state.scores);
+  const {user, scores} = useSelector(state => state);
   const {currentPoints, currentBottles, currentWeight} = scores;
+  const {name} = user;
 
   const dataArray = [
     {
       key: 1,
       Component: UserInfoForm,
       title: 'Mis Datos',
+      data: {user},
 
-      currentPoints,
       // callback:
     },
     {
       key: 2,
       Component: UserPoints,
       title: 'Mi puntaje',
-
+      data: {scores},
       currentPoints,
       // callback:
     },
@@ -32,12 +34,13 @@ const Profile = () => {
       key: 3,
       Component: MyGrowth,
       title: 'Mi crecimiento',
+      data: {scores},
       currentPoints,
       // callback:
     },
     {
       key: 4,
-      Component: UserPoints,
+      Component: Movements,
       title: 'Movimientos',
       currentPoints,
       // callback:
@@ -46,7 +49,7 @@ const Profile = () => {
 
   return (
     <Container>
-      <UserInfoHeader name="Claudio" />
+      <UserInfoHeader name={name} />
       <TabLists>
         <SwipeableTabs data={dataArray} />
       </TabLists>
