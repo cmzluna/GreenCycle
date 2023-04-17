@@ -1,44 +1,34 @@
 import { Router } from "express";
 import { usersModel } from '../models/users.model.js'
-import { getAllUsers, updateUser, createUser, loginUser, deleteUser, getUser} from '../services/users.services.js';
-import passport from "passport";
+import { getAllUsers, updateUser, createUser, loginUser, deleteUser, getUser, logoutUser } from '../services/users.service.js';
+
 
 
 const router = Router()
 
-// router.post('/register', async (req, res) => {
-//     const { email, password } = req.body
-//     try {
-//         const userExists = await usersModel.find({ email })
-//         if (userExists.length !== 0) {
-//             res.redirect('/views/failRegister')
-//         } else {
-//             res.redirect('/views/login')
-//         }
-//     } catch (error) {
-//         console.log(error)
-//     }
-// })
+
+router.post('/register', createUser);
 
 
+router.post('/login', loginUser);
 
-
-router.post(
-    '/registerUser',createUser
-);
+router.get('/api/private', (req, res) => {
+    res.json({ message: `Hello ${req.auth.payload.sub}!` });
+  })
 
 router.get('/allUsers', getAllUsers);
-
-router.post(
-    '/login', loginUser);
-
-    router.put('/updateUser', updateUser);
 
 
 router.get('/profile', getUser)
 
-router.delete('/deleteUser', deleteUser);
 
+router.get('/logout', logoutUser)
+
+
+router.put('/updateUser', updateUser);
+
+
+router.delete('/deleteUser', deleteUser);
 
 
 export default router
