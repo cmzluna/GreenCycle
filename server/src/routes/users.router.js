@@ -19,16 +19,16 @@ router.get('/api/private', (req, res) => {
 router.get('/allUsers', getAllUsers);
 
 
-router.get('/profile', getUser)
+router.get('/:id/profile', getUser)
 
 
-router.get('/logout', logoutUser)
+router.get('/:id/logout', logoutUser)
 
 
-router.put('/updateUser', updateUser);
+router.put('/:id/updateUser', updateUser);
 
 
-router.delete('/deleteUser', deleteUser);
+router.delete('/:id/deleteUser', deleteUser);
 
 
 export default router

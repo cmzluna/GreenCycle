@@ -1,8 +1,13 @@
-import map from '../mapLocations/mapManager.js'
 import { centersModel } from '../models/centers.model.js'
 
 
 export const getAllSites = async (req, res) =>{
+    try {
+        const sites= await centersModel.find()
+        return res.json(sites)        
+    } catch (error) {
+        return error
+    }
 
 }
 //PETICION PARA GUARDAR UN PUNTO DE RECICLAJE

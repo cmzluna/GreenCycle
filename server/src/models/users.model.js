@@ -5,6 +5,10 @@ const usersSchema = new Schema({
         type: String,
         required: true,
     },
+    authId:{
+        type: String,
+        require: true
+    },
     lastName:{
         type:String,
         required:true
@@ -16,7 +20,6 @@ const usersSchema = new Schema({
     },
     password:{
         type: String,
-        required: true,
     },
     //image:{
         //type: String,
@@ -28,8 +31,6 @@ const usersSchema = new Schema({
        // }
   //  ]
 })
-usersSchema.plugin(passportlocal, {
-    usernameField: 'email'
-});
+
 
 export const usersModel = model('Users', usersSchema)

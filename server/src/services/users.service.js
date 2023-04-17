@@ -1,21 +1,13 @@
 import { usersModel } from '../models/users.model.js';
-import passport from "passport";
 import { comparePasswords } from '../utils.js';
 
 
 export const createUser = async (req, res, next) => {
-    const { firstName, lastName, email, password } = req.body //destructuryng
+    const { firstName, lastName, email } = req.body //destructuryng
     const user = new usersModel({
-        firstName, lastName, email, password
+        firstName, lastName, email
     });
-    usersModel.register(user, password, (err, user) => {
-        if (err) {
-            console.log(err);
-            return res.render('registro', { error: err.message });
-        }
-        passport.authenticate('local')(req, res, function () {
-        });
-    });
+   
     return res.status(200).json('usuario creado con éxito');
 }
 
@@ -80,5 +72,16 @@ export const deleteUser = async (req, res) => {
 };
 
 export const getUser = async (req, res) => {
-    res.json({ message: "This is user profile" })
+    try {
+        let { id } = req.params;
+
+        let user = await usersModel.findOne({ _id: id })
+        if (user) {
+            res.status(204).json(user);
+        } else {
+            res.status(404).json({ message: "User not found" });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
 }

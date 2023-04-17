@@ -16,6 +16,7 @@ import viewsRouter from './routes/views.router.js';
 import bottlesRouter from './routes/bottles.router.js'
 import donationsRouter from './routes/donations.router.js'
 import exchangesRouter from './routes/exchanges.router.js'
+import benefitsRouter  from './routes/benefits.router.js'
 
 
 const app = express();
@@ -66,6 +67,7 @@ app.use('/GreenCycle/scores', scoresRouter)
 app.use('/GreenCycle/bottles', bottlesRouter) 
 app.use('/GreenCycle/donations', donationsRouter)
 app.use('/GreenCycle/exchanges', exchangesRouter)
+app.use('/GreenCycle/benefits', benefitsRouter)
 
 
 // ROOT PATH 
