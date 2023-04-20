@@ -27,7 +27,7 @@ const Padlock = styled(Image)`
   position: absolute;
   top: 15px;
   right: 10px;
-  left: 15px;
+  left: 22px;
   bottom: 10px;
 `;
 

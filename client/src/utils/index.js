@@ -122,7 +122,9 @@ export const steps = [
 ];
 
 export const getCurrentLevel = currentPoints => {
-  const currentLevel = steps.find(el => currentPoints >= el.pointsNeeded);
+  const sortedSteps = steps.sort((a, b) => a.level - b.level);
+
+  const currentLevel = sortedSteps.find(el => currentPoints <= el.pointsNeeded);
 
   if (!currentLevel) return steps[steps.length - 1];
 

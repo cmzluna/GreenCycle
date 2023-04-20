@@ -23,6 +23,8 @@ const MyGrowth = ({data}) => {
   const sortedSteps = steps.sort((a, b) => a.level - b.level);
 
   const filteredSortedSteps = sortedSteps;
+  console.log('currentPoints ==', currentPoints);
+  console.log('level ==', level);
 
   return (
     <Container>
@@ -38,7 +40,7 @@ const MyGrowth = ({data}) => {
       <PointsNumber>{currentBottles}</PointsNumber>
       <PointsTitle>Botellas recicladas</PointsTitle>
       <Separator />
-      <ListTitle>Tu jardín - nivel: {level}</ListTitle>
+      <ListTitle>Tu jardín</ListTitle>
       <LevelsList
         data={sortedSteps}
         currentLevel={level}
