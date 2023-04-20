@@ -10,13 +10,17 @@ import { auth } from 'express-oauth2-jwt-bearer';
 import {__dirname} from "./utils.js" ;
 import './dbConfig.js';
 import { PORT, URI_MONGO,ISSUER_BASE_URL,API_IDENTIFIER} from './const.js';
+// ROUTES
 import usersRouter from './routes/users.router.js';
 import scoresRouter from './routes/scores.router.js';
 import viewsRouter from './routes/views.router.js';
-import bottlesRouter from './routes/bottles.router.js'
 import donationsRouter from './routes/donations.router.js'
 import exchangesRouter from './routes/exchanges.router.js'
 import benefitsRouter  from './routes/benefits.router.js'
+import movementsRouter  from './routes/movements.router.js'
+import centersRouter from './routes/centers.router.js'
+import newsRouter  from './routes/news.router.js'
+import faqsRouter  from './routes/faqs.router.js'
 
 
 const app = express();
@@ -61,18 +65,21 @@ app.use(
 
 // ROUTES
 
-app.use('/GreenCycle/views', viewsRouter)  
-app.use('/GreenCycle/users', usersRouter)  
-app.use('/GreenCycle/scores', scoresRouter)
-app.use('/GreenCycle/bottles', bottlesRouter) 
-app.use('/GreenCycle/donations', donationsRouter)
-app.use('/GreenCycle/exchanges', exchangesRouter)
-app.use('/GreenCycle/benefits', benefitsRouter)
+app.use('/views', viewsRouter)  
+app.use('/users', usersRouter)  
+app.use('/scores', scoresRouter)
+app.use('/donations', donationsRouter)
+app.use('/exchanges', exchangesRouter)
+app.use('/benefits', benefitsRouter)
+app.use('/movements', movementsRouter)
+app.use('/centers', centersRouter)
+app.use('/news', newsRouter)
+app.use('/faqs', faqsRouter)
 
 
 // ROOT PATH 
 app.get('/',(req,res)=>{
-  res.redirect('GreenCycle/views/login');
+  res.redirect('/views/login');
 })
 
 app.listen(app.get('port'), () => console.log(`App listening in port ${app.get('port')} => http://localhost:4200`));
