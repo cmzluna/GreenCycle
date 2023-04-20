@@ -1,11 +1,11 @@
 import { Schema, model } from 'mongoose'
 
 const donationsSchema= new Schema({
-    growth:{
+    name:{
         type: String,
     },
     currentPoints:{
-        
+        type: Number,
     }
 
 
