@@ -16,6 +16,7 @@ import Bloqueado from '/assets/levelsIcons/Bloqueado.png';
 
 const Item = ({item, onPress, type, currentLevel, currentPoints, navigate}) => {
   const isBlocked = currentLevel < item.level;
+  console.log('currentLevel ==', currentLevel);
   console.log('isBlocked ==', isBlocked);
 
   return (

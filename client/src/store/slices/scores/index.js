@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialState = {currentPoints: 10, currentBottles: 4, currentWeight: 32};
+const initialState = {currentPoints: 40, currentBottles: 4, currentWeight: 32};
 
 export const scoresSlice = createSlice({
   name: 'user',
