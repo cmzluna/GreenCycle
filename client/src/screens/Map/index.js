@@ -109,9 +109,6 @@ const Map = ({navigation}) => {
         <BottomSheet
           ref={sheetRef}
           requestLocationPermission={requestLocationPermission}>
-          <View>
-            <Text>tiene permiso!</Text>
-          </View>
           <LocationsInfoSheet selectedLocation={selectedLocation} />
         </BottomSheet>
       </>
