@@ -34,8 +34,16 @@ export const TabStack = () => {
     <>
       <Tab.Navigator
         initialRouteName="Home"
-        labeled={false}
-        shifting={true}
+        labeled
+        activeColor="#fff"
+        inactiveColor="#fff"
+        screenOptions={{
+          headerTitle: 'Custom Header',
+          headerStyle: {
+            backgroundColor: '#000',
+          },
+          headerTintColor: '#fff',
+        }}
         barStyle={{
           backgroundColor: '#000',
           paddingBottom: 12,
@@ -46,74 +54,72 @@ export const TabStack = () => {
           borderTopRightRadius: 30,
           height: Platform.OS === 'ios' ? 100 : 70,
         }}>
-        <Tab.Group screenOptions={{tabBarColor: '000'}}>
-          <Tab.Screen
-            name="Home"
-            component={Home}
-            options={{
-              tabBarLabel: 'home',
-              tabBarIcon: ({color, focused}) => (
-                <HomeIcon color={focused ? 'black' : 'white'} />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Swap"
-            component={SwapStack}
-            options={{
-              tabBarLabel: 'home',
-
-              headerShown: true,
-
-              tabBarIcon: ({color, focused}) => (
-                <SwapIcon color={focused ? 'black' : 'white'} />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Scanner"
-            component={ScannerBase}
-            options={{
-              barStyle: {display: 'none'},
-              tabBarLabel: 'scanner',
-              tabBarIcon: ({color, focused}) => (
-                <ScannerIcon color={focused ? 'black' : 'white'} />
-              ),
-            }}
-            listeners={({navigation}) => ({
-              tabPress: e => {
-                e.preventDefault();
-                requestPermissionHandler(navigation);
-              },
-            })}
-          />
-          <Tab.Screen
-            name="DrawerStack"
-            component={DrawerStack}
-            options={{
-              headerShown: true,
-              tabBarIcon: ({color, focused}) => (
-                <LocationIcon color={focused ? 'black' : 'white'} />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="HamburgerStack"
-            component={HamburgerStack}
-            options={{
-              tabBarLabel: 'book',
-              tabBarIcon: ({color, focused}) => (
-                <HamburguerIcon color={focused ? 'black' : 'white'} />
-              ),
-            }}
-            listeners={({navigation}) => ({
-              tabPress: e => {
-                e.preventDefault();
-                navigation.toggleDrawer();
-              },
-            })}
-          />
-        </Tab.Group>
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={() => ({
+            headerShown: true,
+            tabBarLabel: 'Home',
+            tabBarIcon: ({color, focused}) => (
+              <HomeIcon color={focused ? 'black' : 'white'} />
+            ),
+          })}
+        />
+        <Tab.Screen
+          name="Swap"
+          component={SwapStack}
+          options={{
+            tabBarLabel: 'Beneficios',
+            headerShown: true,
+            tabBarIcon: ({color, focused}) => (
+              <SwapIcon color={focused ? 'black' : 'white'} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Scanner"
+          component={ScannerBase}
+          options={{
+            headerShown: true,
+            tabBarLabel: 'Escanear',
+            tabBarIcon: ({color, focused}) => (
+              <ScannerIcon color={focused ? 'black' : 'white'} />
+            ),
+          }}
+          listeners={({navigation}) => ({
+            tabPress: e => {
+              e.preventDefault();
+              requestPermissionHandler(navigation);
+            },
+          })}
+        />
+        <Tab.Screen
+          name="DrawerStack"
+          component={DrawerStack}
+          options={{
+            tabBarLabel: 'Centros',
+            tabBarIcon: ({color, focused}) => (
+              <LocationIcon color={focused ? 'black' : 'white'} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="HamburgerStack"
+          component={HamburgerStack}
+          options={{
+            tabBarLabel: 'Más',
+            headerShown: true,
+            tabBarIcon: ({color, focused}) => (
+              <HamburguerIcon color={focused ? 'black' : 'white'} />
+            ),
+          }}
+          listeners={({navigation}) => ({
+            tabPress: e => {
+              e.preventDefault();
+              navigation.toggleDrawer();
+            },
+          })}
+        />
       </Tab.Navigator>
     </>
   );

@@ -16,7 +16,7 @@ const Item = ({item, onPress, type, currentPoints, navigate}) => {
     if (item.points > currentPoints) {
       // open popup
     }
-    navigate('SwapConfirm', {...item, type});
+    navigate('Canjear', {...item, type});
   };
 
   return (
