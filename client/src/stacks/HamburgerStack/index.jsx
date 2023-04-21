@@ -5,21 +5,17 @@ import News from '../../screens/News';
 import Contact from '../../screens/Contact';
 import {Image, TouchableOpacity, View, Text} from 'react-native';
 
-const CustomHeader = ({navigation}) => (
+const CustomHeader = ({navigation, title}) => (
   <View
     style={{
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      paddingHorizontal: 16,
+      flexDirection: 'column',
+      justifyContent: 'center',
       backgroundColor: '#ABE286',
-      width: '100%',
+      width: '80%',
       flex: 1,
       height: Platform.OS === 'ios' ? 100 : 70,
     }}>
-    <Image source={require('../../../assets/Icons/tabbaricon.png')} />
-
-    <View style={{width: 24}} />
+    <Text style={{fontSize: 20, fontWeight: 'bold'}}>{title}</Text>
   </View>
 );
 
@@ -39,28 +35,55 @@ const HamburgerStack = () => {
           headerShown: true,
           tabBarIcon: ({color}) => <SwapIcon />,
           headerTitle: ({navigation}) => (
-            <CustomHeader navigation={navigation} />
+            <CustomHeader navigation={navigation} title="Tu Perfil" />
           ),
           headerStyle: {
             backgroundColor: '#ABE286',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flex: 1,
+            flexDirection: 'column',
           },
-          headerLeft: ({navigation}) => (
-            <View
-              style={{
-                width: 100,
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingHorizontal: 16,
-                backgroundColor: '#ABE286',
-                height: Platform.OS === 'ios' ? 100 : 70,
-              }}>
-              <Image source={require('../../../assets/Icons/back.png')} />
-            </View>
-          ),
         }}
       />
-      <Stack.Screen name="FAQs" component={FAQs} />
-      <Stack.Screen name="News" component={News} />
+      <Stack.Screen
+        name="FAQs"
+        component={FAQs}
+        options={{
+          tabBarLabel: 'home',
+          headerShown: true,
+          tabBarIcon: ({color}) => <SwapIcon />,
+          headerTitle: ({navigation}) => (
+            <CustomHeader navigation={navigation} title="FAQs" />
+          ),
+          headerStyle: {
+            backgroundColor: '#ABE286',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flex: 1,
+            flexDirection: 'column',
+          },
+        }}
+      />
+      <Stack.Screen
+        name="News"
+        component={News}
+        options={{
+          tabBarLabel: 'home',
+          headerShown: true,
+          tabBarIcon: ({color}) => <SwapIcon />,
+          headerTitle: ({navigation}) => (
+            <CustomHeader navigation={navigation} title="Novedades" />
+          ),
+          headerStyle: {
+            backgroundColor: '#ABE286',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flex: 1,
+            flexDirection: 'column',
+          },
+        }}
+      />
       <Stack.Screen name="Contact" component={Contact} />
     </Stack.Navigator>
   );
