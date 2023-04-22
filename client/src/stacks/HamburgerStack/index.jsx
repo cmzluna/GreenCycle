@@ -2,7 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Profile from '../../screens/Profile';
 import FAQs from '../../screens/Faqs';
 import News from '../../screens/News';
-import Contact from '../../screens/Contact';
+import Contact from '../../components/Contact';
 import {Image, TouchableOpacity, View, Text} from 'react-native';
 
 const CustomHeader = ({navigation, title}) => (
@@ -47,14 +47,14 @@ const HamburgerStack = () => {
         }}
       />
       <Stack.Screen
-        name="FAQs"
+        name="More"
         component={FAQs}
         options={{
-          tabBarLabel: 'home',
+          tabBarLabel: 'FAQs',
           headerShown: true,
           tabBarIcon: ({color}) => <SwapIcon />,
           headerTitle: ({navigation}) => (
-            <CustomHeader navigation={navigation} title="FAQs" />
+            <CustomHeader navigation={navigation} title="Más" />
           ),
           headerStyle: {
             backgroundColor: '#ABE286',
@@ -65,26 +65,6 @@ const HamburgerStack = () => {
           },
         }}
       />
-      <Stack.Screen
-        name="News"
-        component={News}
-        options={{
-          tabBarLabel: 'home',
-          headerShown: true,
-          tabBarIcon: ({color}) => <SwapIcon />,
-          headerTitle: ({navigation}) => (
-            <CustomHeader navigation={navigation} title="Novedades" />
-          ),
-          headerStyle: {
-            backgroundColor: '#ABE286',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flex: 1,
-            flexDirection: 'column',
-          },
-        }}
-      />
-      <Stack.Screen name="Contact" component={Contact} />
     </Stack.Navigator>
   );
 };

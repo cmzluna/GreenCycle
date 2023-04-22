@@ -30,9 +30,10 @@ data = [
   ]
 */
 
-const SwipeableTabs = ({data}) => {
+const SwipeableTabs = ({data, selectedTab}) => {
+  console.log('selectedTab =', selectedTab);
   const layout = useWindowDimensions();
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = React.useState(0 | selectedTab);
 
   const initialState = data.map(({key, title}) => ({key, title}));
 

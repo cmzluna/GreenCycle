@@ -42,7 +42,7 @@ const ImageWrapper = styled(InnerWrapper)`
   position: relative;
   border: 2px solid #2e4a21;
   background-color: ${({color}) => color};
-  border-radius: 35;
+  border-radius: 35px;
   padding: 6px;
 `;
 const ItemTitle = styled.Text`
