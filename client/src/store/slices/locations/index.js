@@ -27,7 +27,7 @@ const initialState = {
       openingTimes: '11:00 - 14:30',
     },
     {
-      id: '3',
+      id: '4',
       name: 'Plaza San Leonardo Murialdo',
       address: 'Gaucho Cruz & Martín Fierro',
       city: 'Villa Bosch',

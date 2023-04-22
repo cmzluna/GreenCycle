@@ -13,7 +13,7 @@ import {getCurrentLevel} from 'utils';
 import {Image} from 'react-native';
 import {steps} from 'utils';
 import LevelsList from '../LevelsList';
-
+import {ScrollView} from 'react-native';
 const MyGrowth = ({data}) => {
   const {
     scores: {currentPoints, currentBottles},
@@ -27,26 +27,28 @@ const MyGrowth = ({data}) => {
   console.log('level ==', level);
 
   return (
-    <Container>
-      <Image
-        source={icon}
-        style={{
-          height: 55,
-          width: 55,
-          marginTop: 25,
-          marginBottom: 10,
-        }}
-      />
-      <PointsNumber>{currentBottles}</PointsNumber>
-      <PointsTitle>Botellas recicladas</PointsTitle>
-      <Separator />
-      <ListTitle>Tu jardín</ListTitle>
-      <LevelsList
-        data={sortedSteps}
-        currentLevel={level}
-        currentPoints={currentPoints}
-      />
-    </Container>
+    <ScrollView>
+      <Container>
+        <Image
+          source={icon}
+          style={{
+            height: 55,
+            width: 55,
+            marginTop: 25,
+            marginBottom: 10,
+          }}
+        />
+        <PointsNumber>{currentBottles}</PointsNumber>
+        <PointsTitle>Botellas recicladas</PointsTitle>
+        <Separator />
+        <ListTitle>Tu jardín</ListTitle>
+        <LevelsList
+          data={sortedSteps}
+          currentLevel={level}
+          currentPoints={currentPoints}
+        />
+      </Container>
+    </ScrollView>
   );
 };
 

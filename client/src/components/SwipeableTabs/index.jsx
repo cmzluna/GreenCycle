@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Text, useWindowDimensions} from 'react-native';
 import {TabView, TabBar, SceneMap} from 'react-native-tab-view';
 import {Container} from './styles';
-
+import {ScrollView} from 'react-native';
 const renderTabBar = props => (
   <TabBar
     {...props}

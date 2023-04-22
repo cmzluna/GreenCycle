@@ -61,7 +61,6 @@ const ListTitle = styled.Text`
   font-size: 24px;
   font-weight: bold;
   margin-top: 15px;
-  margin-bottom: 8px;
 `;
 export {
   Container,

@@ -17,7 +17,7 @@ const BottomSheetComp = forwardRef(function BottomSheetComp(props, ref) {
   const {requestLocationPermission, children, ...otherProps} = props;
 
   // variables
-  const snapPoints = useMemo(() => ['15%', '30%', '65%'], []);
+  const snapPoints = useMemo(() => ['30%', '40%'], []);
   // callbacks
 
   const handleClosePress = useCallback(() => {

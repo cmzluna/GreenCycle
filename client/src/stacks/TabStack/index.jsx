@@ -37,13 +37,6 @@ export const TabStack = () => {
         labeled
         activeColor="#fff"
         inactiveColor="#fff"
-        screenOptions={{
-          headerTitle: 'Custom Header',
-          headerStyle: {
-            backgroundColor: '#000',
-          },
-          headerTintColor: '#fff',
-        }}
         barStyle={{
           backgroundColor: '#000',
           paddingBottom: 12,
