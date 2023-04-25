@@ -35,7 +35,7 @@ const ProgressSection = styled.View`
 
 const WelcomeWrapper = styled.View`
   flex: 1;
-  gap: 10;
+  gap: 10px;
 `;
 
 const InnerWrapper = styled.View`
@@ -43,14 +43,14 @@ const InnerWrapper = styled.View`
 
   justify-content: flex-end;
   align-items: center;
-  gap: 10;
+  gap: 10px;
 `;
 
 const RowWrapper = styled.View`
   flex: 1;
   flex-direction: row;
   justify-content: center;
-  gap: 10;
+  gap: 10px;
   align-items: flex-end;
   height: 100%;
 `;

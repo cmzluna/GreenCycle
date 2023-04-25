@@ -32,9 +32,9 @@ const MyGrowth = ({data}) => {
         <Image
           source={icon}
           style={{
-            height: 55,
-            width: 55,
-            marginTop: 25,
+            height: 80,
+            width: 80,
+            marginTop: 15,
             marginBottom: 10,
           }}
         />

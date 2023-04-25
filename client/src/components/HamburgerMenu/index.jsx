@@ -24,7 +24,10 @@ const HamburgerMenu = ({navigation}) => {
 
         <StyledButton
           onPress={() => {
-            navigation.navigate('HamburgerStack', {screen: 'FAQs'});
+            navigation.navigate('HamburgerStack', {
+              screen: 'More',
+              params: {swipeId: 1},
+            });
           }}>
           <FAQs style={styles.icon} />
           <Label>FAQs</Label>
@@ -32,7 +35,10 @@ const HamburgerMenu = ({navigation}) => {
 
         <StyledButton
           onPress={() => {
-            navigation.navigate('HamburgerStack', {screen: 'News'});
+            navigation.navigate('HamburgerStack', {
+              screen: 'More',
+              params: {swipeId: 0},
+            });
           }}>
           <News style={styles.icon} />
           <Label>Novedades</Label>
@@ -40,7 +46,10 @@ const HamburgerMenu = ({navigation}) => {
 
         <StyledButton
           onPress={() => {
-            navigation.navigate('HamburgerStack', {screen: 'Contact'});
+            navigation.navigate('HamburgerStack', {
+              screen: 'More',
+              params: {swipeId: 2},
+            });
           }}>
           <Contact style={styles.icon} />
           <Label>Contáctanos</Label>

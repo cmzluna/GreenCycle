@@ -23,9 +23,9 @@ const ScoresInfo = ({currentPoints, currentLevel, icon}) => {
         <Image
           source={icon}
           style={{
-            height: 45,
-            width: 50,
-            marginRight: 50,
+            height: 65,
+            width: 65,
+            marginRight: 40,
           }}
         />
       </GrowthIndicator>

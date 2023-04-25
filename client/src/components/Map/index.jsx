@@ -132,7 +132,7 @@ const Map = ({markers, handleToggleDrawer}) => {
           />
 
           <MapLibreGL.Camera
-            followUserMode={locationAvailable ? 'normal' : 'none'}
+            followUserMode="normal"
             followUserLocation={locationAvailable ? true : false}
             zoomLevel={12}
             // defaultSettings={defaultCamera}      try
