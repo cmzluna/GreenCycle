@@ -1,11 +1,18 @@
 # C10-33-m-mern
 
-## Integrantes: 
+## Group members: 
 
 **Team Leader:** Fabián Cárdenas  
 **UX/UI:** Romina Cassettai  
 **React Native:** Claudio Mazzoli  
 **Backend:** Matías Paredes
+
+
+## Promotional video:
+Watch the video by clicking on the image, here:
+
+[![Watch the video](https://drive.google.com/file/d/1ucHy-b-rTz7nRqjA-gYB95lObJli7FPO/view?usp=share_link)]([https://drive.google.com/file/d/1GmC82_o7tIj1yHwlvQuNZzlWe6xXvtTb/view?usp=sharing])
+
 
 ## App screens:
 
