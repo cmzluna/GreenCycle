@@ -2,7 +2,7 @@
 
 ## Integrantes: 
 
-Team Leader: Fabián Cárdenas
-UX/UI: Romina Cassettai
-Frontend: Claudio Mazzoli
+Team Leader: Fabián Cárdenas  
+UX/UI: Romina Cassettai  
+Frontend: Claudio Mazzoli  
 Backend: Matías Paredes
