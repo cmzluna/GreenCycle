@@ -11,10 +11,7 @@
 ## Promotional video:
 Watch the video by clicking on the image, here:
 
-[<img src="https://drive.google.com/uc?export=view&id=1ucHy-b-rTz7nRqjA-gYB95lObJli7FPO" width="150"  >]([https://www.youtube.com/watch?v=Hc79sDi3f0U "Now in Android: 55"](https://drive.google.com/file/d/1GmC82_o7tIj1yHwlvQuNZzlWe6xXvtTb/view?usp=sharing))
-
-[![Watch the video]( <img src="https://drive.google.com/uc?export=view&id=1ucHy-b-rTz7nRqjA-gYB95lObJli7FPO" width="150"  >)]([https://drive.google.com/file/d/1GmC82_o7tIj1yHwlvQuNZzlWe6xXvtTb/view?usp=sharing])
-
+https://user-images.githubusercontent.com/63924389/234286542-97a52716-569d-4f34-bb06-731bc7e0f245.mp4
 
 ## App screens:
 
