@@ -77,4 +77,8 @@ app.get("/", (req, res) => {
   res.redirect("/views/login");
 });
 
-app.listen(3001, () => console.log(`server running`));
+const portToUse = PORT || 3030;
+
+app.listen(portToUse, () =>
+  console.log(`server running on port: ${portToUse}`)
+);
