@@ -103,8 +103,8 @@ const Home = () => {
               <Image
                 source={icon}
                 style={{
-                  height: 60,
-                  width: 60,
+                  height: 110,
+                  width: 110,
                 }}
               />
               <Rule />

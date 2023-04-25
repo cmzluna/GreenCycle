@@ -52,7 +52,7 @@ const BoxLabel = styled.Text`
 `;
 const PointsNumber = styled.Text`
   color: #2e4a21;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: bold;
 `;
 
