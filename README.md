@@ -17,7 +17,7 @@ https://user-images.githubusercontent.com/63924389/234286542-97a52716-569d-4f34-
 
 | Home | Growth | Locations | Swap | FAQs | News |
 | --- | --- | --- | --- | --- | --- |
-| <img src="https://drive.google.com/uc?export=view&id=1dLGRZzkrZJ9LpM5EVb7vt1wggqaaz9bH" width="150"  > | <img src="https://drive.google.com/uc?export=view&id=1pdtSxT6vSfyxjNA68oEANGwn25qga6Ji" width="160"  > | <img src="https://drive.google.com/uc?export=view&id=1pXmgM9a7dMYehM91Hzbs7U6JdfUWbBIP" width="170"  > | <img src="https://drive.google.com/uc?export=view&id=1WvkCUmPcezzrbKib6gc77L3Ld9D4QMdv" width="165"  > | <img src="https://drive.google.com/uc?export=view&id=1UueL1g8JAzRPJiFucZsKFmbWT7ZnEl9C" width="160"  > | <img src="https://drive.google.com/uc?export=view&id=1EfA8c-g9BAh0g3DRoYhl1rknom-hgxXb" width="150"  >
+| <img src="https://drive.google.com/uc?export=view&id=1dLGRZzkrZJ9LpM5EVb7vt1wggqaaz9bH" width="150"  > | <img src="https://drive.google.com/uc?export=view&id=1pdtSxT6vSfyxjNA68oEANGwn25qga6Ji" width="160"  > | <img src="https://drive.google.com/uc?export=view&id=1pXmgM9a7dMYehM91Hzbs7U6JdfUWbBIP" width="170"  > | <img src="https://drive.google.com/uc?export=view&id=1WvkCUmPcezzrbKib6gc77L3Ld9D4QMdv" width="175"  > | <img src="https://drive.google.com/uc?export=view&id=1UueL1g8JAzRPJiFucZsKFmbWT7ZnEl9C" width="165"  > | <img src="https://drive.google.com/uc?export=view&id=1EfA8c-g9BAh0g3DRoYhl1rknom-hgxXb" width="150"  >
   
       
       
